@@ -11,9 +11,9 @@
   </div>
   <div class="right">
     <section class="search">
-      <mat-form-field appearance="fill">
+      <mat-form-field appearance="fill" (change)="search(searchValue.value)">
         <mat-label>Search</mat-label>
-        <input matInput placeholder="Search a movie, TV or Person">
+        <input #searchValue matInput placeholder="Search a movie, TV or Person">
         <mat-icon matSuffix>search</mat-icon>
       </mat-form-field>
     </section>
