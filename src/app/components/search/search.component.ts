@@ -1,5 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {TmdbApiService} from "../../services/api/tmdb-api.service";
+import {Result} from "../../interfaces/search/result/result";
 
 @Component({
   selector: 'app-search',
@@ -8,9 +9,11 @@ import {TmdbApiService} from "../../services/api/tmdb-api.service";
 })
 export class SearchComponent implements OnInit {
 
+  result: Result = {page: 0, results: [], total_pages: 0, total_results: 0};
+
   constructor(public tmdbApiService: TmdbApiService) { }
 
   async ngOnInit() {
-    console.log((await this.tmdbApiService.search("test").toPromise())?.results)
+    this.result = <Result>(await this.tmdbApiService.search("test").toPromise());
   }
 }
