@@ -1,10 +1,17 @@
-import { Component } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
+import {TmdbApiService} from "./services/api/tmdb-api.service";
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css']
 })
-export class AppComponent {
+export class AppComponent implements OnInit {
   title = 'movies';
+
+  constructor(public tmdbApiService: TmdbApiService) { }
+
+  async ngOnInit() {
+    console.log(await this.tmdbApiService.searchMovies("test").toPromise());
+  }
 }

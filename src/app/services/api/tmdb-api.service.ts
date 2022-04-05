@@ -32,6 +32,6 @@ export class TmdbApiService {
     for (const params of parameters)
       parametersString += "&" + params.param + "=" + params.value;
 
-    return this.http.get<Type>(environment.api.url + url + parametersString);
+    return this.http.get<Type>(environment.api.url + url + parametersString).pipe();
   }
 }

@@ -2,10 +2,10 @@ export const environment = {
   production: true,
   api: {
     key: "15f9d7fec19ec6b5b9bc491acd508fe6",
-    url: "https://api.themoviedb.org/3/",
+    url: "https://api.themoviedb.org/3",
   },
   images: {
-    url: "https://image.tmdb.org/t/p/",
+    url: "https://image.tmdb.org/t/p",
     backdrop_sizes: [
       "w300",
       "w780",
