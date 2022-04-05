@@ -27,6 +27,7 @@
               "src/assets"
             ],
             "styles": [
+              "src/app/themes/light-theme.scss",
               "src/styles.css"
             ],
             "scripts": []
@@ -94,6 +95,7 @@
               "src/assets"
             ],
             "styles": [
+              "src/app/themes/light-theme.scss",
               "src/styles.css"
             ],
             "scripts": []
