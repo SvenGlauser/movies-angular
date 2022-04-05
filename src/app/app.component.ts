@@ -1,5 +1,4 @@
 import {Component} from '@angular/core';
-import {TmdbApiService} from "./services/api/tmdb-api.service";
 
 @Component({
   selector: 'app-root',

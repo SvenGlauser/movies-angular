@@ -2,7 +2,7 @@ import {Injectable} from '@angular/core';
 import {HttpClient} from "@angular/common/http";
 import {Observable} from "rxjs";
 import {environment} from "../../../environments/environment";
-import {ResultSearchMovie} from "../../interfaces/search/movie/result-search-movie";
+import {Result} from "../../interfaces/search/result/result";
 
 @Injectable({
   providedIn: 'root'
@@ -11,8 +11,8 @@ export class TmdbApiService {
 
   constructor(public http: HttpClient) { }
 
-  public searchMovies(query: string): Observable<ResultSearchMovie> {
-    return this.getRequest<ResultSearchMovie>("/search/movie", [{param: "query", value: query}])
+  public search(query: string): Observable<Result> {
+    return this.getRequest<Result>("/search/multi", [{param: "query", value: query}])
   }
 
   private getRequest<Type>(url: string, params: { param: string, value: string }[]): Observable<Type> {

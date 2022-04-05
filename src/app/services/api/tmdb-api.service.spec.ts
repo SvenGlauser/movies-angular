@@ -1,6 +1,6 @@
-import { TestBed } from '@angular/core/testing';
+import {TestBed} from '@angular/core/testing';
 
-import { TmdbApiService } from './tmdb-api.service';
+import {TmdbApiService} from './tmdb-api.service';
 
 describe('TmdbApiService', () => {
   let service: TmdbApiService;
