@@ -1,3 +1,19 @@
+.content {
+  display: flex;
+  justify-content: space-between;
+  gap: 20px;
+}
+
+.left {
+  margin-top: 100px;
+}
+
+.right {
+  flex-grow: 1;
+}
+
+/* FILTER */
+
 .filter {
   width: 200px;
   text-align: center;
@@ -19,4 +35,18 @@ mat-button-toggle {
 
 mat-button-toggle.mat-button-toggle-checked {
   background-color: var(--accent-color);
+}
+
+/* SEARCH */
+
+.search > * {
+  display: block;
+  width: 50%;
+  margin: auto;
+}
+
+/* RESULT */
+
+.result {
+  padding: 20px;
 }

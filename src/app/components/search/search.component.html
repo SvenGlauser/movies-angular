@@ -1,8 +1,26 @@
-<div class="filter">
-  <h3>Type de résultats</h3>
-  <mat-button-toggle-group [(ngModel)]="type" aria-label="Result type">
-    <ng-container *ngFor="let typeElement of getTypes()">
-      <mat-button-toggle [value]="typeElement">{{typeElement.toUpperCase()}}</mat-button-toggle>
-    </ng-container>
-  </mat-button-toggle-group>
+<div class="content">
+  <div class="left">
+    <section class="filter">
+      <h3>Result type</h3>
+      <mat-button-toggle-group [(ngModel)]="type" aria-label="Result type">
+        <ng-container *ngFor="let typeElement of getTypes()">
+          <mat-button-toggle [value]="typeElement">{{typeElement.toUpperCase()}}</mat-button-toggle>
+        </ng-container>
+      </mat-button-toggle-group>
+    </section>
+  </div>
+  <div class="right">
+    <section class="search">
+      <mat-form-field appearance="fill">
+        <mat-label>Search</mat-label>
+        <input matInput placeholder="Search a movie, TV or Person">
+        <mat-icon matSuffix>search</mat-icon>
+      </mat-form-field>
+    </section>
+    <section class="result">
+      <div *ngFor="let resultElement of getResults()">
+        {{resultElement.media_type}}
+      </div>
+    </section>
+  </div>
 </div>
