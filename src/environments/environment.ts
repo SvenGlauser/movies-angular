@@ -6,6 +6,7 @@ export const environment = {
   production: false,
   api: {
     key: "15f9d7fec19ec6b5b9bc491acd508fe6",
+    language: "fr",
     url: "https://api.themoviedb.org/3/",
   },
   images: {
