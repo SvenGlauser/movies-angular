@@ -13,7 +13,11 @@ export class SearchComponent implements OnInit {
 
   constructor(public tmdbApiService: TmdbApiService) { }
 
-  async ngOnInit() {
+  async search(): Promise<void> {
     this.result = <Result>(await this.tmdbApiService.search("test").toPromise());
+  }
+
+  ngOnInit(): void {
+    this.search()
   }
 }
