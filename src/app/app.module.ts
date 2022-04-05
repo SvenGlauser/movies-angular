@@ -8,12 +8,18 @@ import {HeaderComponent} from './components/header/header.component';
 import {SearchComponent} from './components/search/search.component';
 import {AppRoutingModule} from "./app-routing.modules";
 import {FormsModule} from "@angular/forms";
+import { MovieComponent } from './components/movie/movie.component';
+import { TvComponent } from './components/tv/tv.component';
+import { PersonComponent } from './components/person/person.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     HeaderComponent,
-    SearchComponent
+    SearchComponent,
+    MovieComponent,
+    TvComponent,
+    PersonComponent
   ],
     imports: [
         BrowserModule,

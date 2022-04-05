@@ -10,7 +10,7 @@ export const environment = {
     url: "https://api.themoviedb.org/3",
   },
   images: {
-    url: "https://image.tmdb.org/t/p",
+    url: "https://image.tmdb.org/t/p/",
     backdrop_sizes: [
       "w300",
       "w780",

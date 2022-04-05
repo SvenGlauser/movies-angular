@@ -20,6 +20,14 @@
     <section class="result">
       <div *ngFor="let resultElement of getResults()">
         {{resultElement.media_type}}
+        <ng-container [ngSwitch]="resultElement.media_type">
+          <app-movie *ngSwitchCase="'movie'" [movie]="castToMovie(resultElement)"></app-movie>
+          <app-tv *ngSwitchCase="'tv'" [movie]="castToTv(resultElement)"></app-tv>
+          <app-person *ngSwitchCase="'person'" [movie]="castToPerson(resultElement)"></app-person>
+          <div *ngSwitchDefault>
+            <h3>Type not found</h3>
+          </div>
+        </ng-container>
       </div>
     </section>
   </div>
