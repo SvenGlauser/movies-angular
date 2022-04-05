@@ -1,9 +1,9 @@
 import {Component} from '@angular/core';
 import {TmdbApiService} from "../../services/api/tmdb-api.service";
 import {Result} from "../../interfaces/search/result/result";
-import {Person} from "@angular/cli/utilities/package-json";
 import {Tv} from "../../interfaces/search/tv/tv";
 import {Movie} from "../../interfaces/search/movie/movie";
+import {Person} from "../../interfaces/search/person/person";
 
 @Component({
   selector: 'app-search',
