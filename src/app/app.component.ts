@@ -7,7 +7,6 @@ import {TmdbApiService} from "./services/api/tmdb-api.service";
   styleUrls: ['./app.component.css']
 })
 export class AppComponent implements OnInit {
-  title = 'movies';
 
   constructor(public tmdbApiService: TmdbApiService) { }
 
