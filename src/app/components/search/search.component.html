@@ -1,3 +1,8 @@
-<section class="filter">
-  
-</section>
+<div class="filter">
+  <h3>Type de résultats</h3>
+  <mat-button-toggle-group [(ngModel)]="type" aria-label="Result type">
+    <ng-container *ngFor="let typeElement of getTypes()">
+      <mat-button-toggle [value]="typeElement">{{typeElement.toUpperCase()}}</mat-button-toggle>
+    </ng-container>
+  </mat-button-toggle-group>
+</div>

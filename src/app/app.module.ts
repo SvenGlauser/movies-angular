@@ -7,6 +7,7 @@ import {HttpClientModule} from "@angular/common/http";
 import {HeaderComponent} from './components/header/header.component';
 import {SearchComponent} from './components/search/search.component';
 import {AppRoutingModule} from "./app-routing.modules";
+import {FormsModule} from "@angular/forms";
 
 @NgModule({
   declarations: [
@@ -14,12 +15,13 @@ import {AppRoutingModule} from "./app-routing.modules";
     HeaderComponent,
     SearchComponent
   ],
-  imports: [
-    BrowserModule,
-    MaterialModule,
-    HttpClientModule,
-    AppRoutingModule
-  ],
+    imports: [
+        BrowserModule,
+        MaterialModule,
+        HttpClientModule,
+        AppRoutingModule,
+        FormsModule
+    ],
   providers: [],
   bootstrap: [AppComponent]
 })

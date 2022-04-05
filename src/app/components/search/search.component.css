@@ -1,0 +1,22 @@
+.filter {
+  width: 200px;
+  text-align: center;
+}
+
+.filter h3 {
+  padding: 10px;
+  margin: 0;
+}
+
+mat-button-toggle-group {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+mat-button-toggle {
+  width: 100%;
+}
+
+mat-button-toggle.mat-button-toggle-checked {
+  background-color: var(--accent-color);
+}
