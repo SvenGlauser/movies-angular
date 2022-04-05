@@ -1,0 +1,7 @@
+mat-toolbar {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  height: var(--header-height);
+}
