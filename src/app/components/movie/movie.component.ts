@@ -11,7 +11,7 @@ export class MovieComponent {
 
   @Input() movie: Movie = {
     adult: false,
-    backdrop_path: null,
+    backdrop_path: "",
     genre_ids: [],
     id: 0,
     media_type: "",
@@ -31,6 +31,8 @@ export class MovieComponent {
 
   getImage() {
     // TODO enlever l'index et créer un objet json
+    if (this.movie.poster_path === null)
+      return "assets/image_not_found.png";
     return environment.images.url + environment.images.poster_sizes[3] + this.movie.poster_path;
   }
 }

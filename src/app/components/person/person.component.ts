@@ -23,6 +23,8 @@ export class PersonComponent {
 
   getImage() {
     // TODO enlever l'index et créer un objet json
+    if (this.person.profile_path === null)
+      return "assets/image_not_found.png";
     return environment.images.url + environment.images.profile_sizes[2] + this.person.profile_path;
   }
 }
