@@ -1,0 +1,9 @@
+.content {
+  display: flex;
+  align-content: center;
+  gap: 20px;
+}
+
+.content div {
+  flex-grow: 1;
+}
