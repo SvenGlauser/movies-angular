@@ -19,7 +19,6 @@
     </section>
     <section class="result">
       <div *ngFor="let resultElement of getResults()">
-        {{resultElement.media_type}}
         <ng-container [ngSwitch]="resultElement.media_type">
           <app-movie *ngSwitchCase="'movie'" [movie]="castToMovie(resultElement)"></app-movie>
           <app-tv *ngSwitchCase="'tv'" [tv]="castToTv(resultElement)"></app-tv>
