@@ -7,6 +7,7 @@ import {MovieDetails} from "../../interfaces/details/movie/movie-details";
 import {TvDetails} from "../../interfaces/details/tv/tv-details";
 import {Person} from "../../interfaces/search/person/person";
 import {Router} from "@angular/router";
+import {MatSnackBar} from "@angular/material/snack-bar";
 
 @Injectable({
   providedIn: 'root'
@@ -14,7 +15,8 @@ import {Router} from "@angular/router";
 export class TmdbApiService {
 
   constructor(private http: HttpClient,
-              private router: Router) { }
+              private router: Router,
+              private snackBar: MatSnackBar) { }
 
   public search(query: string): Observable<Result> {
     return this.getRequest<Result>("/search/multi", [{param: "query", value: query}])
@@ -37,36 +39,25 @@ export class TmdbApiService {
     for (const params of parameters)
       parametersString += "&" + params.param + "=" + params.value;
 
-    return this.http.get<Type>(environment.api.url + url + parametersString);
+    return this.http.get<Type>(environment.api.url + url + parametersString).pipe(
+      catchError((err, caught) => {
+        this.router.navigate([""]);
+        this.snackBar.open("Error : " + err.status + " with text : " + err.statusText, "Close")
+        console.log(err);
+        return EMPTY;
+      })
+    );
   }
 
   public getMovie(id: number): Observable<MovieDetails> {
-    return this.getRequest<MovieDetails>("/movie/" + id).pipe(
-      catchError((err, caught) => {
-        this.router.navigate([""])
-        console.log(err)
-        return EMPTY;
-      })
-    );
+    return this.getRequest<MovieDetails>("/movie/" + id);
   }
 
   public getTv(id: number): Observable<TvDetails> {
-    return this.getRequest<TvDetails>("/tv/" + id).pipe(
-      catchError((err, caught) => {
-        this.router.navigate([""])
-        console.log(err)
-        return EMPTY;
-      })
-    );
+    return this.getRequest<TvDetails>("/tv/" + id);
   }
 
   public getPerson(id: number): Observable<Person> {
-    return this.getRequest<Person>("/person/" + id).pipe(
-      catchError((err, caught) => {
-        this.router.navigate([""])
-        console.log(err)
-        return EMPTY;
-      })
-    );
+    return this.getRequest<Person>("/person/" + id);
   }
 }
