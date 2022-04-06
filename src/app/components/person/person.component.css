@@ -2,8 +2,25 @@
   display: flex;
   align-content: center;
   gap: 20px;
+
+  border-radius: 20px;
+  overflow: hidden;
+
+  background-color: #eee;
+
+  height: 50px;
+
+  margin: 20px 0;
+
+  box-shadow: 0 0 20px -10px black;
 }
 
-.content div {
+.content h3 {
   flex-grow: 1;
+}
+
+.content img {
+  border-radius: 20px;
+
+  height: 50px;
 }
