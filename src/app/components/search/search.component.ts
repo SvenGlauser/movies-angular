@@ -13,7 +13,7 @@ import {Router} from "@angular/router";
 })
 export class SearchComponent {
 
-  private result: Result = {page: 0, results: [], total_pages: 0, total_results: 0};
+  result: Result = {page: 0, results: [], total_pages: 0, total_results: 0};
 
   type: string = "";
 

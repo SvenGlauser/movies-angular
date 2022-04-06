@@ -1,5 +1,5 @@
 <div class="content">
-  <div class="left">
+  <div class="left" *ngIf="result.results.length !== 0">
     <section class="filter">
       <h3>Result type</h3>
       <mat-button-toggle-group [(ngModel)]="type" aria-label="Result type">
