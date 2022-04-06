@@ -1,8 +1,34 @@
 .content {
   display: flex;
   gap: 20px;
+
+  border-radius: 20px;
+  overflow: hidden;
+
+  background-color: #eee;
+
+  height: 150px;
+
+  margin: 20px 0;
+
+  box-shadow: 0 0 20px -10px black;
 }
 
 .content div {
   flex-grow: 1;
+}
+
+.content div h3 {
+  margin: 10px 0;
+}
+
+.content div p {
+  margin: 0;
+}
+
+.content img {
+  border-radius: 20px;
+
+  width: 100px;
+  aspect-ratio: 2/3;
 }
