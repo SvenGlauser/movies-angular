@@ -4,6 +4,8 @@ import {Observable} from "rxjs";
 import {environment} from "../../../environments/environment";
 import {Result} from "../../interfaces/search/result/result";
 import {MovieDetails} from "../../interfaces/details/movie/movie-details";
+import {TvDetails} from "../../interfaces/details/tv/tv-details";
+import {Person} from "../../interfaces/search/person/person";
 
 @Injectable({
   providedIn: 'root'
@@ -38,5 +40,13 @@ export class TmdbApiService {
 
   public getMovie(id: number): Observable<MovieDetails> {
     return this.getRequest<MovieDetails>("/movie/" + id);
+  }
+
+  public getTv(id: number): Observable<TvDetails> {
+    return this.getRequest<TvDetails>("/tv/" + id);
+  }
+
+  public getPerson(id: number): Observable<Person> {
+    return this.getRequest<Person>("/person/" + id);
   }
 }
