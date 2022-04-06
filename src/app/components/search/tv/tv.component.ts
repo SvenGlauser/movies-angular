@@ -1,5 +1,4 @@
 import {Component, Input} from '@angular/core';
-import {Movie} from "../../../interfaces/search/movie/movie";
 import {environment} from "../../../../environments/environment";
 import {Tv} from "../../../interfaces/search/tv/tv";
 

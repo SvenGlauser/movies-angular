@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {ActivatedRoute, Router} from "@angular/router";
 import {TmdbApiService} from "../../services/api/tmdb-api.service";
 
@@ -26,8 +26,13 @@ export class ViewComponent implements OnInit {
       this.type = params['type'];
       if (!this.isValide())
         this.router.navigate([''])
-      else
-        console.log(await this.tmdbApiService.getMovie(this.id).toPromise())
+      else {
+        switch (this.type) {
+          case "movie": console.log(await this.tmdbApiService.getMovie(this.id).toPromise()); break;
+          case "tv": console.log(await this.tmdbApiService.getTv(this.id).toPromise()); break;
+          case "person": console.log(await this.tmdbApiService.getPerson(this.id).toPromise()); break;
+        }
+      }
     })
   }
 
