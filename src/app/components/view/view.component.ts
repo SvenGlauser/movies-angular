@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import {ActivatedRoute, Router} from "@angular/router";
+import {TmdbApiService} from "../../services/api/tmdb-api.service";
 
 @Component({
   selector: 'app-view',
@@ -12,6 +13,7 @@ export class ViewComponent implements OnInit {
   type: string = "";
 
   constructor(private route: ActivatedRoute,
+              private tmdbApiService: TmdbApiService,
               private router: Router) { }
 
   private isValide() {
@@ -19,11 +21,13 @@ export class ViewComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.route.params.subscribe(params => {
+    this.route.params.subscribe(async params => {
       this.id = +params['id'];
       this.type = params['type'];
       if (!this.isValide())
         this.router.navigate([''])
+      else
+        console.log(await this.tmdbApiService.getMovie(this.id).toPromise())
     })
   }
 

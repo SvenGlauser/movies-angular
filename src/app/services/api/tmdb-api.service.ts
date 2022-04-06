@@ -3,6 +3,7 @@ import {HttpClient} from "@angular/common/http";
 import {Observable} from "rxjs";
 import {environment} from "../../../environments/environment";
 import {Result} from "../../interfaces/search/result/result";
+import {MovieDetails} from "../../interfaces/details/movie/movie-details";
 
 @Injectable({
   providedIn: 'root'
@@ -15,7 +16,7 @@ export class TmdbApiService {
     return this.getRequest<Result>("/search/multi", [{param: "query", value: query}])
   }
 
-  private getRequest<Type>(url: string, params: { param: string, value: string }[]): Observable<Type> {
+  private getRequest<Type>(url: string, params: { param: string, value: string }[] = []): Observable<Type> {
     let parameters = [
       {
         param: "api_key",
@@ -32,6 +33,10 @@ export class TmdbApiService {
     for (const params of parameters)
       parametersString += "&" + params.param + "=" + params.value;
 
-    return this.http.get<Type>(environment.api.url + url + parametersString).pipe();
+    return this.http.get<Type>(environment.api.url + url + parametersString);
+  }
+
+  public getMovie(id: number): Observable<MovieDetails> {
+    return this.getRequest<MovieDetails>("/movie/" + id);
   }
 }

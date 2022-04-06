@@ -1,0 +1,2 @@
+export interface TvDetails {
+}
