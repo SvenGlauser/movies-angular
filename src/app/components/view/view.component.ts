@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import {ActivatedRoute} from "@angular/router";
+import {ActivatedRoute, Router} from "@angular/router";
 
 @Component({
   selector: 'app-view',
@@ -9,15 +9,22 @@ import {ActivatedRoute} from "@angular/router";
 export class ViewComponent implements OnInit {
 
   id: number = -1;
+  type: string = "";
 
-  constructor(private route: ActivatedRoute) { }
+  constructor(private route: ActivatedRoute,
+              private router: Router) { }
+
+  private isValide() {
+    return !isNaN(this.id) && this.id > 0 && (this.type === "person" || this.type === "movie" || this.type === "tv");
+  }
 
   ngOnInit(): void {
     this.route.params.subscribe(params => {
-      this.id = params['id'];
+      this.id = +params['id'];
+      this.type = params['type'];
+      if (!this.isValide())
+        this.router.navigate([''])
     })
-
-    console.log(this.id)
   }
 
 }

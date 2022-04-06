@@ -9,7 +9,7 @@ const routes: Routes = [
     component: SearchComponent,
   },
   {
-    path: "view/:id",
+    path: "view/:type/:id",
     component: ViewComponent,
   }
 ]
