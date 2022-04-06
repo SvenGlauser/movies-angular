@@ -5,6 +5,7 @@ import {Tv} from "../../interfaces/search/tv/tv";
 import {Movie} from "../../interfaces/search/movie/movie";
 import {Person} from "../../interfaces/search/person/person";
 import {Router} from "@angular/router";
+import {environment} from "../../../environments/environment";
 
 @Component({
   selector: 'app-search',
@@ -32,7 +33,7 @@ export class SearchComponent {
   }
 
   open(resultElement: Movie | Tv | Person) {
-      this.router.navigate(["view/" + resultElement.media_type + "/" + resultElement.id]);
+    window.location.href = environment.url + "/view/" + resultElement.media_type + "/" + resultElement.id;
   }
 
   getTypes() {

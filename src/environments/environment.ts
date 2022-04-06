@@ -47,7 +47,8 @@ export const environment = {
       "w300",
       "original"
     ]
-  }
+  },
+  url: "http://localhost:4200"
 };
 
 /*

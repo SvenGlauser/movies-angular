@@ -1,11 +1,12 @@
 export const environment = {
-  production: true,
+  production: false,
   api: {
     key: "15f9d7fec19ec6b5b9bc491acd508fe6",
+    language: "fr",
     url: "https://api.themoviedb.org/3",
   },
   images: {
-    url: "https://image.tmdb.org/t/p",
+    url: "https://image.tmdb.org/t/p/",
     backdrop_sizes: [
       "w300",
       "w780",
@@ -42,5 +43,6 @@ export const environment = {
       "w300",
       "original"
     ]
-  }
+  },
+  url: "https://glausve.divtec.me/movies"
 };
