@@ -12,6 +12,7 @@ import { MovieComponent } from './components/search/movie/movie.component';
 import { TvComponent } from './components/search/tv/tv.component';
 import { PersonComponent } from './components/search/person/person.component';
 import { ViewComponent } from './components/view/view.component';
+import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
 
 @NgModule({
   declarations: [
@@ -25,6 +26,7 @@ import { ViewComponent } from './components/view/view.component';
   ],
     imports: [
         BrowserModule,
+        BrowserAnimationsModule,
         MaterialModule,
         HttpClientModule,
         AppRoutingModule,
