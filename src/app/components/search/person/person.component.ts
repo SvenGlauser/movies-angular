@@ -1,6 +1,6 @@
 import {Component, Input} from '@angular/core';
-import {environment} from "../../../environments/environment";
-import {Person} from "../../interfaces/search/person/person";
+import {environment} from "../../../../environments/environment";
+import {Person} from "../../../interfaces/search/person/person";
 
 @Component({
   selector: 'app-person',

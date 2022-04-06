@@ -8,9 +8,10 @@ import {HeaderComponent} from './components/header/header.component';
 import {SearchComponent} from './components/search/search.component';
 import {AppRoutingModule} from "./app-routing.modules";
 import {FormsModule} from "@angular/forms";
-import { MovieComponent } from './components/movie/movie.component';
-import { TvComponent } from './components/tv/tv.component';
-import { PersonComponent } from './components/person/person.component';
+import { MovieComponent } from './components/search/movie/movie.component';
+import { TvComponent } from './components/search/tv/tv.component';
+import { PersonComponent } from './components/search/person/person.component';
+import { ViewComponent } from './components/view/view.component';
 
 @NgModule({
   declarations: [
@@ -19,7 +20,8 @@ import { PersonComponent } from './components/person/person.component';
     SearchComponent,
     MovieComponent,
     TvComponent,
-    PersonComponent
+    PersonComponent,
+    ViewComponent
   ],
     imports: [
         BrowserModule,
