@@ -50,3 +50,7 @@ mat-button-toggle.mat-button-toggle-checked {
 .result {
   padding: 20px;
 }
+
+app-movie, app-tv, app-person {
+  cursor: pointer;
+}
