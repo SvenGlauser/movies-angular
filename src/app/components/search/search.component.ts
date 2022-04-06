@@ -21,8 +21,14 @@ export class SearchComponent {
               private router: Router) { }
 
   async search(value: string): Promise<void> {
-    this.result = <Result>(await this.tmdbApiService.search(value).toPromise());
-    this.type = this.getTypes().length > 0 ? this.getTypes()[0] : "";
+    if (value !== "") {
+      this.result = <Result>(await this.tmdbApiService.search(value).toPromise());
+      this.type = this.getTypes().length > 0 ? this.getTypes()[0] : "";
+    }
+    else {
+      this.result = {page: 0, results: [], total_pages: 0, total_results: 0};
+      this.type = "";
+    }
   }
 
   open(resultElement: Movie | Tv | Person) {
