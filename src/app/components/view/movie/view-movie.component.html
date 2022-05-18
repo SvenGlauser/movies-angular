@@ -9,22 +9,28 @@
           <ul class="list-genres">
             <li *ngFor="let genre of movie?.genres">{{genre.name}}</li>
           </ul>
-          <div class="icon">
-            <mat-icon>event</mat-icon>
-            <span>{{movie?.release_date?.toLocaleDateString()}}</span>
+          <div class="icons">
+            <div class="icon">
+              <mat-icon>event</mat-icon>
+              <span>{{movie?.release_date?.toLocaleDateString()}}</span>
+            </div>
+            <div class="icon">
+              <mat-icon>language</mat-icon>
+              <span>{{movie?.original_language?.toUpperCase()}}</span>
+            </div>
+            <div class="icon">
+              <mat-icon>attach_money</mat-icon>
+              <span>{{movie?.budget?.toLocaleString()}}</span>
+            </div>
+            <div class="icon">
+              <mat-icon>account_balance_wallet</mat-icon>
+              <span>{{movie?.revenue?.toLocaleString()}}</span>
+            </div>
           </div>
-          <div class="icon">
-            <mat-icon>language</mat-icon>
-            <span>{{movie?.original_language?.toUpperCase()}}</span>
-          </div>
-          <div class="icon">
-            <mat-icon>attach_money</mat-icon>
-            <span>{{movie?.budget?.toLocaleString()}}</span>
-          </div>
-          <div class="icon">
-            <mat-icon>account_balance_wallet</mat-icon>
-            <span>{{movie?.revenue?.toLocaleString()}}</span>
-          </div>
+        </div>
+        <div class="overview">
+          <h2>Synopsis</h2>
+          <p>{{movie?.overview}}</p>
         </div>
       </div>
     </div>

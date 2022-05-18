@@ -18,7 +18,9 @@ export class ViewMovieComponent implements OnInit {
               private tmdbApiService: TmdbApiService) { }
 
   getBackgroundImage(): string {
-    return environment.images.url + environment.images.backdrop_sizes[3] + this.movie?.backdrop_path;
+    return window.matchMedia("screen and (max-width: 600px)").matches ?
+           environment.images.url + environment.images.poster_sizes[6] + this.movie?.poster_path :
+           environment.images.url + environment.images.backdrop_sizes[3] + this.movie?.backdrop_path;
   }
 
   getImage() {

@@ -18,7 +18,9 @@ export class ViewTvComponent implements OnInit {
               private tmdbApiService: TmdbApiService) { }
 
   getBackgroundImage(): string {
-    return environment.images.url + environment.images.backdrop_sizes[3] + this.tv?.backdrop_path;
+    return window.matchMedia("screen and (max-width: 600px)").matches ?
+      environment.images.url + environment.images.poster_sizes[6] + this.tv?.poster_path :
+      environment.images.url + environment.images.backdrop_sizes[3] + this.tv?.backdrop_path;
   }
 
   getImage(): string {
