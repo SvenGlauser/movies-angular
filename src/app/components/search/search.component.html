@@ -11,23 +11,36 @@
   </div>
   <div class="right">
     <section class="search">
-      <mat-form-field appearance="fill" (change)="search(searchValue.value)">
+      <mat-form-field appearance="fill" (change)="search()">
         <mat-label>Search</mat-label>
-        <input #searchValue matInput placeholder="Search a movie, TV or Person">
+        <input matInput placeholder="Movie, TV or person" [formControl]="searchValue" autocomplete="off">
         <mat-icon matSuffix>search</mat-icon>
       </mat-form-field>
     </section>
-    <section class="result">
-      <div *ngFor="let resultElement of getResults()">
-        <ng-container [ngSwitch]="resultElement.media_type">
-          <app-movie *ngSwitchCase="'movie'" [movie]="castToMovie(resultElement)" (click)="open(resultElement)"></app-movie>
-          <app-tv *ngSwitchCase="'tv'" [tv]="castToTv(resultElement)" (click)="open(resultElement)"></app-tv>
-          <app-person *ngSwitchCase="'person'" [person]="castToPerson(resultElement)" (click)="open(resultElement)"></app-person>
-          <div *ngSwitchDefault>
-            <h3>Type not found</h3>
-          </div>
-        </ng-container>
-      </div>
-    </section>
+    <app-chargement *ngIf="chargement; else content"></app-chargement>
+    <ng-template #content>
+      <section class="filter" *ngIf="result.results.length !== 0">
+        <mat-button-toggle-group [(ngModel)]="type" aria-label="Result type">
+          <ng-container *ngFor="let typeElement of getTypes()">
+            <mat-button-toggle [value]="typeElement">{{typeElement.toUpperCase()}}</mat-button-toggle>
+          </ng-container>
+        </mat-button-toggle-group>
+      </section>
+      <section class="result">
+        <div *ngFor="let resultElement of getResults()">
+          <ng-container [ngSwitch]="resultElement.media_type">
+            <app-movie *ngSwitchCase="'movie'" [movie]="castToMovie(resultElement)" (click)="open(resultElement)"></app-movie>
+            <app-tv *ngSwitchCase="'tv'" [tv]="castToTv(resultElement)" (click)="open(resultElement)"></app-tv>
+            <app-person *ngSwitchCase="'person'" [person]="castToPerson(resultElement)" (click)="open(resultElement)"></app-person>
+            <div *ngSwitchDefault>
+              <h3>Type not found</h3>
+            </div>
+          </ng-container>
+        </div>
+        <div *ngIf="getResults().length === 0">
+          <h3 class="aucun-resultat">Aucun résultat</h3>
+        </div>
+      </section>
+    </ng-template>
   </div>
 </div>

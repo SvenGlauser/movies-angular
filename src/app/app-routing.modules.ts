@@ -1,7 +1,8 @@
 import {NgModule} from '@angular/core';
 import {SearchComponent} from "./components/search/search.component";
 import {RouterModule, Routes} from "@angular/router";
-import {ViewComponent} from "./components/view/view.component";
+import {ViewMovieComponent} from "./components/view/movie/view-movie.component";
+import {ViewTvComponent} from "./components/view/tv/view-tv.component";
 
 const routes: Routes = [
   {
@@ -9,8 +10,16 @@ const routes: Routes = [
     component: SearchComponent,
   },
   {
-    path: "view/:type/:id",
-    component: ViewComponent,
+    path: "view/movie/:id",
+    component: ViewMovieComponent,
+  },
+  {
+    path: "view/person/:id",
+    component: ViewMovieComponent,
+  },
+  {
+    path: "view/tv/:id",
+    component: ViewTvComponent,
   }
 ]
 

@@ -1,0 +1,32 @@
+<app-chargement *ngIf="!tv; else content"></app-chargement>
+<ng-template #content>
+  <div class="background-content" [style.background-image]="'url(' + getBackgroundImage() + ')'">
+    <div class="wrapper-content">
+      <div class="content">
+        <img [src]="getImage()" alt="Image of movie">
+        <div>
+          <h1>{{tv?.original_name}}</h1>
+          <ul class="list-genres">
+            <li *ngFor="let genre of tv?.genres">{{genre.name}}</li>
+          </ul>
+          <div class="icon">
+            <mat-icon>event</mat-icon>
+            <span>{{tv?.first_air_date?.toLocaleDateString()}} - {{tv?.last_air_date?.toLocaleDateString()}}</span>
+          </div>
+          <div class="icon">
+            <mat-icon>language</mat-icon>
+            <span>{{tv?.original_language?.toUpperCase()}}</span>
+          </div>
+          <div class="icon">
+            <mat-icon>tv</mat-icon>
+            <span>{{tv?.number_of_seasons}} saisons</span>
+          </div>
+          <div class="icon">
+            <mat-icon>videocam</mat-icon>
+            <span>{{tv?.number_of_episodes}} épisodes</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</ng-template>

@@ -2,6 +2,12 @@
   display: flex;
   justify-content: space-between;
   gap: 20px;
+  padding: 15px;
+}
+
+.aucun-resultat {
+  text-align: center;
+  margin-top: 20px;
 }
 
 .left {
@@ -37,6 +43,10 @@ mat-button-toggle.mat-button-toggle-checked {
   background-color: var(--accent-color);
 }
 
+.right .filter {
+  display: none;
+}
+
 /* SEARCH */
 
 .search > * {
@@ -53,4 +63,40 @@ mat-button-toggle.mat-button-toggle-checked {
 
 app-movie, app-tv, app-person {
   cursor: pointer;
+}
+
+@media screen and (max-width: 800px) {
+  .left {
+    display: none;
+  }
+
+  .right .filter {
+    display: block;
+    width: 100%;
+  }
+
+  mat-button-toggle-group {
+    display: flex;
+    flex-wrap: wrap;
+  }
+
+  /* two items */
+  mat-button-toggle:first-child:nth-last-child(2),
+  mat-button-toggle:first-child:nth-last-child(2) ~ mat-button-toggle {
+    width: 50%;
+  }
+
+  /* three items */
+  mat-button-toggle:first-child:nth-last-child(3),
+  mat-button-toggle:first-child:nth-last-child(3) ~ mat-button-toggle {
+    width: 33.3333%;
+  }
+
+  .result {
+    padding: 0;
+  }
+
+  .search > * {
+    width: 100%;
+  }
 }

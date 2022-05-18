@@ -1,39 +1,44 @@
-import {Component} from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {TmdbApiService} from "../../services/api/tmdb-api.service";
 import {Result} from "../../interfaces/search/result/result";
 import {Tv} from "../../interfaces/search/tv/tv";
 import {Movie} from "../../interfaces/search/movie/movie";
 import {Person} from "../../interfaces/search/person/person";
 import {Router} from "@angular/router";
-import {environment} from "../../../environments/environment";
+import {FormControl, Validators} from "@angular/forms";
 
 @Component({
   selector: 'app-search',
   templateUrl: './search.component.html',
   styleUrls: ['./search.component.css']
 })
-export class SearchComponent {
+export class SearchComponent implements OnInit {
 
   result: Result = {page: 0, results: [], total_pages: 0, total_results: 0};
+  searchValue: FormControl = new FormControl(undefined, [Validators.required]);
 
   type: string = "";
+  chargement: boolean = false;
 
   constructor(private tmdbApiService: TmdbApiService,
               private router: Router) { }
 
-  async search(value: string): Promise<void> {
-    if (value !== "") {
-      this.result = <Result>(await this.tmdbApiService.search(value).toPromise());
+  async search(): Promise<void> {
+    this.chargement = true;
+    if (this.searchValue.valid) {
+      this.result = <Result>(await this.tmdbApiService.search(this.searchValue.value).toPromise());
       this.type = this.getTypes().length > 0 ? this.getTypes()[0] : "";
     }
     else {
       this.result = {page: 0, results: [], total_pages: 0, total_results: 0};
       this.type = "";
     }
+    this.chargement = false;
   }
 
   open(resultElement: Movie | Tv | Person) {
-    window.location.href = environment.url + "/view/" + resultElement.media_type + "/" + resultElement.id;
+    sessionStorage.setItem("search", this.searchValue.value);
+    this.router.navigate(["/view/" + resultElement.media_type + "/" + resultElement.id]).then();
   }
 
   getTypes() {
@@ -55,5 +60,10 @@ export class SearchComponent {
 
   castToPerson(value: Movie | Tv | Person): Person {
     return <Person>value;
+  }
+
+  ngOnInit(): void {
+    this.searchValue.setValue(sessionStorage.getItem("search"));
+    this.search().then();
   }
 }

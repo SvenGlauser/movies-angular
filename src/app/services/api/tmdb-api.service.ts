@@ -1,6 +1,6 @@
 import {Injectable} from '@angular/core';
 import {HttpClient} from "@angular/common/http";
-import {catchError, EMPTY, Observable} from "rxjs";
+import {catchError, EMPTY, map, Observable} from "rxjs";
 import {environment} from "../../../environments/environment";
 import {Result} from "../../interfaces/search/result/result";
 import {MovieDetails} from "../../interfaces/details/movie/movie-details";
@@ -50,11 +50,22 @@ export class TmdbApiService {
   }
 
   public getMovie(id: number): Observable<MovieDetails> {
-    return this.getRequest<MovieDetails>("/movie/" + id);
+    return this.getRequest<MovieDetails>("/movie/" + id).pipe(
+      map(movie => {
+        movie.release_date = new Date(movie.release_date);
+        return movie;
+      })
+    );
   }
 
   public getTv(id: number): Observable<TvDetails> {
-    return this.getRequest<TvDetails>("/tv/" + id);
+    return this.getRequest<TvDetails>("/tv/" + id).pipe(
+      map(tv => {
+        tv.first_air_date = new Date(tv.first_air_date);
+        tv.last_air_date = new Date(tv.last_air_date);
+        return tv;
+      })
+    );;
   }
 
   public getPerson(id: number): Observable<Person> {
