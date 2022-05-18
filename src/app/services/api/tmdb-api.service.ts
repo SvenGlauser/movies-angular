@@ -20,16 +20,16 @@ export class TmdbApiService {
               private router: Router,
               private snackBar: MatSnackBar) { }
 
-  public searchTv(query: string): Observable<Result<Tv>> {
-    return this.getRequest<Result<Tv>>("/search/tv", [{param: "query", value: query}])
+  public searchTv(query: string, page: number = 1): Observable<Result<Tv>> {
+    return this.getRequest<Result<Tv>>("/search/tv", [{param: "query", value: query}, {param: "page", value: page.toString()}])
   }
 
-  public searchMovie(query: string): Observable<Result<Movie>> {
-    return this.getRequest<Result<Movie>>("/search/movie", [{param: "query", value: query}])
+  public searchMovie(query: string, page: number = 1): Observable<Result<Movie>> {
+    return this.getRequest<Result<Movie>>("/search/movie", [{param: "query", value: query}, {param: "page", value: page.toString()}])
   }
 
-  public searchPerson(query: string): Observable<Result<Person>> {
-    return this.getRequest<Result<Person>>("/search/person", [{param: "query", value: query}])
+  public searchPerson(query: string, page: number = 1): Observable<Result<Person>> {
+    return this.getRequest<Result<Person>>("/search/person", [{param: "query", value: query}, {param: "page", value: page.toString()}])
   }
 
   public getRequest<Type>(url: string, params: { param: string, value: string }[] = []): Observable<Type> {

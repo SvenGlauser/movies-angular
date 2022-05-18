@@ -49,9 +49,9 @@ export class SearchComponent implements OnInit {
     }
   }
 
-  private searchMovie() {
+  searchMovie(page?: number) {
     this.chargement++;
-    this.tmdbApiService.searchMovie(this.searchValue.value).subscribe(movies => {
+    this.tmdbApiService.searchMovie(this.searchValue.value, page).subscribe(movies => {
       this.movies = movies;
       this.chargement--;
       if (this.movies && this.movies.results.length > 0)
@@ -59,9 +59,9 @@ export class SearchComponent implements OnInit {
     });
   }
 
-  private searchTV() {
+  searchTV(page?: number) {
     this.chargement++;
-    this.tmdbApiService.searchTv(this.searchValue.value).subscribe(tvs => {
+    this.tmdbApiService.searchTv(this.searchValue.value, page).subscribe(tvs => {
       this.tvs = tvs;
       this.chargement--;
       if (this.tvs && this.tvs.results.length > 0)
@@ -69,9 +69,9 @@ export class SearchComponent implements OnInit {
     });
   }
 
-  private searchPerson() {
+  searchPerson(page?: number) {
     this.chargement++;
-    this.tmdbApiService.searchPerson(this.searchValue.value).subscribe(persons => {
+    this.tmdbApiService.searchPerson(this.searchValue.value, page).subscribe(persons => {
       this.persons = persons;
       this.chargement--;
       if (this.persons && this.persons.results.length > 0)
