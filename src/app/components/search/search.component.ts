@@ -17,7 +17,8 @@ export class SearchComponent implements OnInit {
   tvs?: Result<Tv>;
   movies?: Result<Movie>;
   persons?: Result<Person>;
-  searchValue: FormControl = new FormControl(undefined, [Validators.required]);
+  searchValue: FormControl = new FormControl(undefined, [Validators.required, Validators.pattern(".*\\S.*[a-zA-z0-9 ]")]);
+  searchedValue?: string;
 
   chargement: number = 0;
   filter: FormControl = new FormControl('', [Validators.required]);
@@ -32,10 +33,13 @@ export class SearchComponent implements OnInit {
       this.searchTV();
       this.searchMovie();
       sessionStorage.setItem('search', this.searchValue.value);
+      this.searchedValue = this.searchValue.value;
     } else {
       this.tvs = undefined;
       this.movies = undefined;
       this.persons = undefined;
+      sessionStorage.removeItem('search');
+      this.searchedValue = undefined;
     }
   }
 
