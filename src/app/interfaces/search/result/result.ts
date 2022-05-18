@@ -1,10 +1,6 @@
-import {Movie} from "../movie/movie";
-import {Tv} from "../tv/tv";
-import {Person} from "../person/person";
-
-export interface Result {
+export interface Result<T> {
   page: number,
-  results: (Movie | Tv | Person)[],
+  results: T[],
   total_results: number,
   total_pages: number,
 }

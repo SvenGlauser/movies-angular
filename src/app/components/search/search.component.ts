@@ -14,56 +14,85 @@ import {FormControl, Validators} from "@angular/forms";
 })
 export class SearchComponent implements OnInit {
 
-  result: Result = {page: 0, results: [], total_pages: 0, total_results: 0};
+  tvs?: Result<Tv>;
+  movies?: Result<Movie>;
+  persons?: Result<Person>;
   searchValue: FormControl = new FormControl(undefined, [Validators.required]);
 
-  type: string = "";
-  chargement: boolean = false;
+  chargement: number = 0;
+  filter: FormControl = new FormControl('', [Validators.required]);
 
   constructor(private tmdbApiService: TmdbApiService,
-              private router: Router) { }
+              private router: Router) {}
 
-  async search(): Promise<void> {
-    this.chargement = true;
+  search() {
     if (this.searchValue.valid) {
-      this.result = <Result>(await this.tmdbApiService.search(this.searchValue.value).toPromise());
-      this.type = this.getTypes().length > 0 ? this.getTypes()[0] : "";
+      this.setFilter();
+      this.searchPerson();
+      this.searchTV();
+      this.searchMovie();
+      sessionStorage.setItem('search', this.searchValue.value);
+    } else {
+      this.tvs = undefined;
+      this.movies = undefined;
+      this.persons = undefined;
     }
-    else {
-      this.result = {page: 0, results: [], total_pages: 0, total_results: 0};
-      this.type = "";
+  }
+
+  setFilter(value?: string) {
+    if (value === undefined) {
+      this.filter.setValue('');
+    } else if (this.filter.value === 'tv' && value === 'movie') {
+      this.filter.setValue('movie');
+    } else if (this.filter.value !== 'movie') {
+      this.filter.setValue(value);
     }
-    this.chargement = false;
   }
 
-  open(resultElement: Movie | Tv | Person) {
-    sessionStorage.setItem("search", this.searchValue.value);
-    this.router.navigate(["/view/" + resultElement.media_type + "/" + resultElement.id]).then();
+  private searchMovie() {
+    this.chargement++;
+    this.tmdbApiService.searchMovie(this.searchValue.value).subscribe(movies => {
+      this.movies = movies;
+      this.chargement--;
+      if (this.movies && this.movies.results.length > 0)
+        this.setFilter('movie');
+    });
   }
 
-  getTypes() {
-    return [...new Set(this.result.results.map(value => value.media_type))].sort((a, b) => a < b ? -1 : 1);
+  private searchTV() {
+    this.chargement++;
+    this.tmdbApiService.searchTv(this.searchValue.value).subscribe(tvs => {
+      this.tvs = tvs;
+      this.chargement--;
+      if (this.tvs && this.tvs.results.length > 0)
+        this.setFilter('tv');
+    });
   }
 
-  getResults() {
-    let result = this.result.results;
-    return result.filter(value => value.media_type === this.type);
+  private searchPerson() {
+    this.chargement++;
+    this.tmdbApiService.searchPerson(this.searchValue.value).subscribe(persons => {
+      this.persons = persons;
+      this.chargement--;
+      if (this.persons && this.persons.results.length > 0)
+        this.setFilter('person');
+    });
   }
 
-  castToMovie(value: Movie | Tv | Person): Movie {
-    return <Movie>value;
+  hasPersons() {
+    return this.persons !== undefined && this.persons.results.length !== 0
   }
 
-  castToTv(value: Movie | Tv | Person): Tv {
-    return <Tv>value;
+  hasMovies() {
+    return this.movies !== undefined && this.movies.results.length !== 0
   }
 
-  castToPerson(value: Movie | Tv | Person): Person {
-    return <Person>value;
+  hasTVs() {
+    return this.tvs !== undefined && this.tvs.results.length !== 0
   }
 
   ngOnInit(): void {
     this.searchValue.setValue(sessionStorage.getItem("search"));
-    this.search().then();
+    this.search();
   }
 }

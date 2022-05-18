@@ -1,11 +1,10 @@
 <div class="content">
-  <div class="left" *ngIf="result.results.length !== 0">
+  <div class="left" *ngIf="(hasPersons() || hasMovies() || hasTVs()) && chargement === 0 || chargement !== 0">
     <section class="filter">
-      <h3>Result type</h3>
-      <mat-button-toggle-group [(ngModel)]="type" aria-label="Result type">
-        <ng-container *ngFor="let typeElement of getTypes()">
-          <mat-button-toggle [value]="typeElement">{{typeElement.toUpperCase()}}</mat-button-toggle>
-        </ng-container>
+      <mat-button-toggle-group [formControl]="filter" [name]="'filter'" aria-label="Result type">
+        <mat-button-toggle [value]="'movie'" *ngIf="hasMovies()">Films</mat-button-toggle>
+        <mat-button-toggle [value]="'tv'" *ngIf="hasTVs()">Séries</mat-button-toggle>
+        <mat-button-toggle [value]="'person'" *ngIf="hasPersons()">Personnes</mat-button-toggle>
       </mat-button-toggle-group>
     </section>
   </div>
@@ -13,32 +12,33 @@
     <section class="search">
       <mat-form-field appearance="fill" color="primary" (change)="search()">
         <mat-label>Search</mat-label>
-        <input matInput placeholder="Movie, TV or person" [formControl]="searchValue" autocomplete="off">
+        <input matInput placeholder="Movie, TV or person" [formControl]="searchValue" autocomplete="off" autofocus>
         <mat-icon matSuffix>search</mat-icon>
       </mat-form-field>
     </section>
     <app-chargement *ngIf="chargement; else content"></app-chargement>
     <ng-template #content>
-      <section class="filter" *ngIf="result.results.length !== 0">
-        <mat-button-toggle-group [(ngModel)]="type" aria-label="Result type">
-          <ng-container *ngFor="let typeElement of getTypes()">
-            <mat-button-toggle [value]="typeElement">{{typeElement.toUpperCase()}}</mat-button-toggle>
-          </ng-container>
+      <section class="filter" *ngIf="hasPersons() || hasMovies() || hasTVs()">
+        <mat-button-toggle-group [formControl]="filter" [name]="'filter'" aria-label="Result type">
+          <mat-button-toggle [value]="'movie'" *ngIf="hasMovies()">Films</mat-button-toggle>
+          <mat-button-toggle [value]="'tv'" *ngIf="hasTVs()">Séries</mat-button-toggle>
+          <mat-button-toggle [value]="'person'" *ngIf="hasPersons()">Personnes</mat-button-toggle>
         </mat-button-toggle-group>
       </section>
       <section class="result">
-        <div *ngFor="let resultElement of getResults()">
-          <ng-container [ngSwitch]="resultElement.media_type">
-            <app-movie *ngSwitchCase="'movie'" [movie]="castToMovie(resultElement)" (click)="open(resultElement)"></app-movie>
-            <app-tv *ngSwitchCase="'tv'" [tv]="castToTv(resultElement)" (click)="open(resultElement)"></app-tv>
-            <app-person *ngSwitchCase="'person'" [person]="castToPerson(resultElement)" (click)="open(resultElement)"></app-person>
-            <div *ngSwitchDefault>
-              <h3>Type not found</h3>
-            </div>
+        <div [ngSwitch]="filter.value" *ngIf="persons !== undefined && tvs !== undefined && movies !== undefined">
+          <ng-container *ngSwitchCase="'tv'">
+            <app-tv *ngFor="let tv of tvs.results" [tv]="tv" [routerLink]="['/view/tv/' + tv.id]"></app-tv>
           </ng-container>
-        </div>
-        <div *ngIf="getResults().length === 0">
-          <h3 class="aucun-resultat">Aucun résultat</h3>
+          <ng-container *ngSwitchCase="'movie'">
+            <app-movie *ngFor="let movie of movies.results" [movie]="movie" [routerLink]="['/view/movie/' + movie.id]"></app-movie>
+          </ng-container>
+          <ng-container *ngSwitchCase="'person'">
+            <app-person *ngFor="let person of persons.results" [person]="person" [routerLink]="['/view/person/' + person.id]"></app-person>
+          </ng-container>
+          <ng-container *ngIf="!hasPersons() && !hasMovies() && !hasTVs()">
+            <h3 class="aucun-resultat">Aucun résultat</h3>
+          </ng-container>
         </div>
       </section>
     </ng-template>

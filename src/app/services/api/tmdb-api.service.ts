@@ -8,6 +8,8 @@ import {TvDetails} from "../../interfaces/details/tv/tv-details";
 import {Person} from "../../interfaces/search/person/person";
 import {Router} from "@angular/router";
 import {MatSnackBar} from "@angular/material/snack-bar";
+import {Tv} from "../../interfaces/search/tv/tv";
+import {Movie} from "../../interfaces/search/movie/movie";
 
 @Injectable({
   providedIn: 'root'
@@ -18,8 +20,16 @@ export class TmdbApiService {
               private router: Router,
               private snackBar: MatSnackBar) { }
 
-  public search(query: string): Observable<Result> {
-    return this.getRequest<Result>("/search/multi", [{param: "query", value: query}])
+  public searchTv(query: string): Observable<Result<Tv>> {
+    return this.getRequest<Result<Tv>>("/search/tv", [{param: "query", value: query}])
+  }
+
+  public searchMovie(query: string): Observable<Result<Movie>> {
+    return this.getRequest<Result<Movie>>("/search/movie", [{param: "query", value: query}])
+  }
+
+  public searchPerson(query: string): Observable<Result<Person>> {
+    return this.getRequest<Result<Person>>("/search/person", [{param: "query", value: query}])
   }
 
   public getRequest<Type>(url: string, params: { param: string, value: string }[] = []): Observable<Type> {
@@ -65,7 +75,7 @@ export class TmdbApiService {
         tv.last_air_date = new Date(tv.last_air_date);
         return tv;
       })
-    );;
+    );
   }
 
   public getPerson(id: number): Observable<Person> {
