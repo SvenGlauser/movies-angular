@@ -32,3 +32,10 @@
   width: 100px;
   aspect-ratio: 2/3;
 }
+
+.content img[src="assets/image_not_found.png"] {
+  width: 100px;
+  height: 75px;
+  mix-blend-mode: darken;
+  align-self: center;
+}
