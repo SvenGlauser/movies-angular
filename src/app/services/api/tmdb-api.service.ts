@@ -78,6 +78,14 @@ export class TmdbApiService {
     );
   }
 
+  public trendingTv(): Observable<Result<Tv>> {
+    return this.getRequest<Result<Tv>>("/trending/tv/week");
+  }
+
+  public trendingMovie(): Observable<Result<Movie>> {
+    return this.getRequest<Result<Movie>>("/trending/movie/week");
+  }
+
   public getPerson(id: number): Observable<Person> {
     return this.getRequest<Person>("/person/" + id);
   }

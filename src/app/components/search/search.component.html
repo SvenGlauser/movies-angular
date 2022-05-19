@@ -11,9 +11,9 @@
   </div>
   <div class="right">
     <section class="search">
-      <mat-form-field appearance="fill" color="primary" (change)="search()">
+      <mat-form-field appearance="fill" color="primary" (change)="isValidSearchString(search.value) ? router.navigate(['/'], {queryParams: {search: search.value}}) : router.navigate(['/'])">
         <mat-label>Rechercher</mat-label>
-        <input matInput placeholder="Film, série ou une personne" [formControl]="searchValue" autocomplete="off" autofocus>
+        <input #search matInput placeholder="Film, série ou une personne" [formControl]="searchValue" autocomplete="off" autofocus>
         <mat-icon matSuffix>search</mat-icon>
       </mat-form-field>
     </section>
@@ -27,7 +27,7 @@
         </mat-button-toggle-group>
       </section>
       <section class="result">
-        <div [ngSwitch]="filter.value" *ngIf="persons !== undefined && tvs !== undefined && movies !== undefined">
+        <div [ngSwitch]="filter.value" *ngIf="persons !== undefined && tvs !== undefined && movies !== undefined; else trending">
           <ng-container *ngSwitchCase="'movie'">
             {{movies.total_results}} résultats pour « {{searchedValue}} »
             <app-movie *ngFor="let movie of movies.results" [movie]="movie" [routerLink]="['/view/movie/' + movie.id]"></app-movie>
@@ -47,6 +47,14 @@
             <h3 class="aucun-resultat">Aucun résultat</h3>
           </ng-container>
         </div>
+        <ng-template #trending>
+          <div class="result">
+            <ng-container *ngFor="let trending of getTrending()">
+              <app-movie *ngIf="trending.media_type === 'movie'" [movie]="mapToMovie(trending)" [routerLink]="['/view/movie/' + trending.id]"></app-movie>
+              <app-tv *ngIf="trending.media_type === 'tv'" [tv]="mapToTv(trending)" [routerLink]="['/view/tv/' + trending.id]"></app-tv>
+            </ng-container>
+          </div>
+        </ng-template>
       </section>
     </ng-template>
   </div>

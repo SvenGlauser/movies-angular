@@ -5,7 +5,7 @@
       <div class="content">
         <img [src]="getImage()" alt="Image of movie">
         <div>
-          <h1>{{tv?.original_name}}</h1>
+          <h1>{{getTitle()}}</h1>
           <ul class="list-genres">
             <li *ngFor="let genre of tv?.genres">{{genre.name}}</li>
           </ul>

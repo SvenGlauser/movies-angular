@@ -13,8 +13,8 @@ import {TvComponent} from './components/search/tv/tv.component';
 import {PersonComponent} from './components/search/person/person.component';
 import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
 import {ViewMovieComponent} from './components/view/movie/view-movie.component';
-import { ChargementComponent } from './components/chargement/chargement.component';
-import { ViewTvComponent } from './components/view/tv/view-tv.component';
+import {ChargementComponent} from './components/chargement/chargement.component';
+import {ViewTvComponent} from './components/view/tv/view-tv.component';
 
 @NgModule({
   declarations: [

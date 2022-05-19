@@ -4,8 +4,9 @@ import {Result} from "../../interfaces/search/result/result";
 import {Tv} from "../../interfaces/search/tv/tv";
 import {Movie} from "../../interfaces/search/movie/movie";
 import {Person} from "../../interfaces/search/person/person";
-import {Router} from "@angular/router";
 import {FormControl, Validators} from "@angular/forms";
+import {ActivatedRoute, Router} from "@angular/router";
+import {TitleService} from "../../services/title/title.service";
 
 @Component({
   selector: 'app-search',
@@ -16,31 +17,26 @@ export class SearchComponent implements OnInit {
 
   tvs?: Result<Tv>;
   movies?: Result<Movie>;
+  trendingTvs?: Result<Tv>;
+  trendingMovies?: Result<Movie>;
   persons?: Result<Person>;
-  searchValue: FormControl = new FormControl(undefined, [Validators.required, Validators.pattern(".*\\S.*[a-zA-z0-9 ]")]);
+  searchValue: FormControl = new FormControl(undefined);
   searchedValue?: string;
 
   chargement: number = 0;
   filter: FormControl = new FormControl('', [Validators.required]);
 
   constructor(private tmdbApiService: TmdbApiService,
-              private router: Router) {}
+              private titleService: TitleService,
+              private route: ActivatedRoute,
+              public router: Router) {}
 
   search() {
-    if (this.searchValue.valid) {
-      this.setFilter();
-      this.searchPerson();
-      this.searchTV();
-      this.searchMovie();
-      sessionStorage.setItem('search', this.searchValue.value);
-      this.searchedValue = this.searchValue.value;
-    } else {
-      this.tvs = undefined;
-      this.movies = undefined;
-      this.persons = undefined;
-      sessionStorage.removeItem('search');
-      this.searchedValue = undefined;
-    }
+    this.setFilter();
+    this.searchPerson();
+    this.searchTV();
+    this.searchMovie();
+    this.searchedValue = this.searchValue.value;
   }
 
   setFilter(value?: string) {
@@ -83,6 +79,29 @@ export class SearchComponent implements OnInit {
     });
   }
 
+  trending() {
+    this.tmdbApiService.trendingTv().subscribe(trendingTvs => {
+      this.trendingTvs = trendingTvs;
+    });
+    this.tmdbApiService.trendingMovie().subscribe(trendingMovies => {
+      this.trendingMovies = trendingMovies;
+    });
+  }
+
+  mapToTv(element: any): Tv {
+    return <Tv>element;
+  }
+
+  mapToMovie(element: any): Movie {
+    return <Movie>element;
+  }
+
+  getTrending(): (Tv | Movie)[] {
+    return new Array<any>().concat(this.trendingTvs ? this.trendingTvs.results : [], this.trendingMovies ? this.trendingMovies.results : []).sort((a, b) => {
+      return b.popularity - a.popularity;
+    });
+  }
+
   hasPersons() {
     return this.persons !== undefined && this.persons.results.length !== 0
   }
@@ -95,8 +114,29 @@ export class SearchComponent implements OnInit {
     return this.tvs !== undefined && this.tvs.results.length !== 0
   }
 
+  isValidSearchString(query?: string) {
+    return query && new RegExp(".*\\S.*[a-zA-z0-9 ]").test(query);
+  }
+
   ngOnInit(): void {
-    this.searchValue.setValue(sessionStorage.getItem("search"));
-    this.search();
+    this.titleService.resetTitle();
+    this.route.queryParams.subscribe(params => {
+      if (this.isValidSearchString(params['search'])) {
+        this.searchValue.setValue(params['search']);
+        this.searchValue.markAllAsTouched();
+        this.trendingTvs = undefined;
+        this.trendingMovies = undefined;
+        this.search();
+        this.titleService.setTitle(`Recherche ${params['search']}`);
+      } else {
+        this.tvs = undefined;
+        this.movies = undefined;
+        this.persons = undefined;
+        this.searchValue.setValue('');
+        this.searchedValue = undefined;
+        this.trending();
+        this.titleService.setTitle('Trending');
+      }
+    });
   }
 }

@@ -3,6 +3,7 @@ import {ActivatedRoute, Router} from "@angular/router";
 import {MovieDetails} from "../../../interfaces/details/movie/movie-details";
 import {TmdbApiService} from "../../../services/api/tmdb-api.service";
 import {environment} from "../../../../environments/environment";
+import {TitleService} from "../../../services/title/title.service";
 
 @Component({
   selector: 'app-view-movie',
@@ -14,6 +15,7 @@ export class ViewMovieComponent implements OnInit {
   movie?: MovieDetails;
 
   constructor(private route: ActivatedRoute,
+              private titleService: TitleService,
               private router: Router,
               private tmdbApiService: TmdbApiService) { }
 
@@ -27,7 +29,12 @@ export class ViewMovieComponent implements OnInit {
     return environment.images.url + environment.images.poster_sizes[3] + this.movie?.poster_path;
   }
 
+  getTitle() {
+    return this.movie?.title + (this.movie?.original_language !== environment.api.language && this.movie?.original_title !== this.movie?.title ? ' (' + this.movie?.original_title + ')' : '');
+  }
+
   ngOnInit(): void {
+    this.titleService.resetTitle();
     this.route.params.subscribe(params => {
       if (params['id'] === undefined) {
         this.router.navigate(['/404']).then();
@@ -35,6 +42,7 @@ export class ViewMovieComponent implements OnInit {
         this.tmdbApiService.getMovie(params['id'])
           .subscribe(movie => {
             this.movie = movie;
+            this.titleService.setTitle(movie?.title);
           });
       }
     });
