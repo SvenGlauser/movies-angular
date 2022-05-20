@@ -21,9 +21,9 @@
     <ng-template #content>
       <section class="filter" *ngIf="hasPersons() || hasMovies() || hasTVs()">
         <mat-button-toggle-group [formControl]="filter" [name]="'filter'" aria-label="Result type">
-          <mat-button-toggle (select)="movies?.page !== 1 ? searchMovie() : true" [value]="'movie'" *ngIf="hasMovies()">Films</mat-button-toggle>
-          <mat-button-toggle (select)="tvs?.page !== 1 ? searchTV() : true" [value]="'tv'" *ngIf="hasTVs()">Séries</mat-button-toggle>
-          <mat-button-toggle (select)="persons?.page !== 1 ? searchPerson() : true" [value]="'person'" *ngIf="hasPersons()">Personnes</mat-button-toggle>
+          <mat-button-toggle (change)="movies?.page !== 1 ? searchMovie() : true" [value]="'movie'" *ngIf="hasMovies()">Films</mat-button-toggle>
+          <mat-button-toggle (change)="tvs?.page !== 1 ? searchTV() : true" [value]="'tv'" *ngIf="hasTVs()">Séries</mat-button-toggle>
+          <mat-button-toggle (change)="persons?.page !== 1 ? searchPerson() : true" [value]="'person'" *ngIf="hasPersons()">Personnes</mat-button-toggle>
         </mat-button-toggle-group>
       </section>
       <section class="result">

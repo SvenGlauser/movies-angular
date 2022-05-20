@@ -34,6 +34,7 @@ export class ViewTvComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    // TODO ajouter nom de la série dans l'url
     this.titleService.resetTitle();
     this.route.params.subscribe(params => {
       if (params['id'] === undefined) {

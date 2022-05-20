@@ -9,9 +9,11 @@
 
   height: 150px;
 
-  margin: 20px 0;
-
   box-shadow: 0 0 20px -10px black;
+
+  padding-right: 20px;
+  margin: 20px 0;
+  text-align: justify;
 }
 
 .content div {

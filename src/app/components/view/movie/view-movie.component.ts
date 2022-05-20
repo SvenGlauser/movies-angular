@@ -34,6 +34,7 @@ export class ViewMovieComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    // TODO ajouter nom du film dans l'url
     this.titleService.resetTitle();
     this.route.params.subscribe(params => {
       if (params['id'] === undefined) {
