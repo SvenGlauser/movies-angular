@@ -34,17 +34,15 @@ export class ViewTvComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    // TODO ajouter nom de la série dans l'url
     this.titleService.resetTitle();
     this.route.params.subscribe(params => {
       if (params['id'] === undefined) {
         this.router.navigate(['/404']).then();
       } else {
-        this.tmdbApiService.getTv(params['id'])
-          .subscribe(tv => {
-            this.tv = tv;
-            this.titleService.setTitle(this.tv?.name);
-          });
+        this.tmdbApiService.getTv(params['id'].toString().split('-')[0]).subscribe(tv => {
+          this.tv = tv;
+          this.titleService.setTitle(this.tv?.name);
+        });
       }
     });
   }

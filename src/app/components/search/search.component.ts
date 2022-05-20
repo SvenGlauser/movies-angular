@@ -118,6 +118,10 @@ export class SearchComponent implements OnInit {
     return query && new RegExp(".*\\S.*[a-zA-z0-9 ]").test(query);
   }
 
+  getUrl(id: number, title: string): string {
+    return id.toString().concat('-', title.replace(/\s/g, '-').toLowerCase());
+  }
+
   ngOnInit(): void {
     this.titleService.resetTitle();
     this.route.queryParams.subscribe(params => {
