@@ -39,11 +39,10 @@ export class ViewMovieComponent implements OnInit {
       if (params['id'] === undefined) {
         this.router.navigate(['/404']).then();
       } else {
-        this.tmdbApiService.getMovie(params['id'])
-          .subscribe(movie => {
-            this.movie = movie;
-            this.titleService.setTitle(movie?.title);
-          });
+        this.tmdbApiService.getMovie(params['id'].toString().split('-')[0]).subscribe(movie => {
+          this.movie = movie;
+          this.titleService.setTitle(movie?.title);
+        });
       }
     });
   }
