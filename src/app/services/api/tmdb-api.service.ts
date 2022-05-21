@@ -10,6 +10,8 @@ import {Router} from "@angular/router";
 import {MatSnackBar} from "@angular/material/snack-bar";
 import {Tv} from "../../interfaces/search/tv/tv";
 import {Movie} from "../../interfaces/search/movie/movie";
+import {PersonDetails} from "../../interfaces/details/person/person-details";
+import {CombinedCredit} from "../../interfaces/details/combined-credit/combined-credit";
 
 @Injectable({
   providedIn: 'root'
@@ -86,7 +88,11 @@ export class TmdbApiService {
     return this.getRequest<Result<Movie>>("/trending/movie/week");
   }
 
-  public getPerson(id: number): Observable<Person> {
-    return this.getRequest<Person>("/person/" + id);
+  public getPerson(id: number): Observable<PersonDetails> {
+    return this.getRequest<PersonDetails>("/person/" + id);
+  }
+
+  public getPersonCredit(id: number): Observable<CombinedCredit> {
+    return this.getRequest<CombinedCredit>("/person/" + id + "/combined_credits");
   }
 }

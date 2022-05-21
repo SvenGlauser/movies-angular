@@ -15,6 +15,7 @@ import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
 import {ViewMovieComponent} from './components/view/movie/view-movie.component';
 import {ChargementComponent} from './components/chargement/chargement.component';
 import {ViewTvComponent} from './components/view/tv/view-tv.component';
+import { ViewPersonComponent } from './components/view/person/view-person.component';
 
 @NgModule({
   declarations: [
@@ -26,7 +27,8 @@ import {ViewTvComponent} from './components/view/tv/view-tv.component';
     PersonComponent,
     ViewMovieComponent,
     ChargementComponent,
-    ViewTvComponent
+    ViewTvComponent,
+    ViewPersonComponent
   ],
   imports: [
     BrowserModule,

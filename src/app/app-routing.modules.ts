@@ -3,6 +3,7 @@ import {SearchComponent} from "./components/search/search.component";
 import {RouterModule, Routes} from "@angular/router";
 import {ViewMovieComponent} from "./components/view/movie/view-movie.component";
 import {ViewTvComponent} from "./components/view/tv/view-tv.component";
+import {ViewPersonComponent} from "./components/view/person/view-person.component";
 
 const routes: Routes = [
   {
@@ -15,7 +16,7 @@ const routes: Routes = [
   },
   {
     path: "view/person/:id",
-    component: ViewMovieComponent,
+    component: ViewPersonComponent,
   },
   {
     path: "view/tv/:id",
