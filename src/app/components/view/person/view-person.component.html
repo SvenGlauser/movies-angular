@@ -26,9 +26,13 @@
           </div>
         </div>
         <div class="biography">{{ person?.biography }}</div>
-        <div *ngFor="let filmOrTv of filmsAndTv">
-          <app-cast-movie *ngIf="filmOrTv.type === 'movie'" [movie]="mapToMovie(filmOrTv.element)" [character]="filmOrTv.character"></app-cast-movie>
-          <app-cast-tv *ngIf="filmOrTv.type === 'tv'" [tv]="mapToTv(filmOrTv.element)" [character]="filmOrTv.character"></app-cast-tv>
+        <div class="wrapper-movie">
+          <div class="movie">
+            <ng-container *ngFor="let filmOrTv of filmsAndTv">
+              <app-cast-movie *ngIf="filmOrTv.type === 'movie'" [movie]="mapToMovie(filmOrTv.element)" [character]="filmOrTv.character"></app-cast-movie>
+              <app-cast-tv *ngIf="filmOrTv.type === 'tv'" [tv]="mapToTv(filmOrTv.element)" [character]="filmOrTv.character"></app-cast-tv>
+            </ng-container>
+          </div>
         </div>
       </div>
     </div>
