@@ -16,6 +16,8 @@ import {ViewMovieComponent} from './components/view/movie/view-movie.component';
 import {ChargementComponent} from './components/chargement/chargement.component';
 import {ViewTvComponent} from './components/view/tv/view-tv.component';
 import { ViewPersonComponent } from './components/view/person/view-person.component';
+import { CastMovieComponent } from './components/view/person/cast-movie/cast-movie.component';
+import { CastTvComponent } from './components/view/person/cast-tv/cast-tv.component';
 
 @NgModule({
   declarations: [
@@ -28,7 +30,9 @@ import { ViewPersonComponent } from './components/view/person/view-person.compon
     ViewMovieComponent,
     ChargementComponent,
     ViewTvComponent,
-    ViewPersonComponent
+    ViewPersonComponent,
+    CastMovieComponent,
+    CastTvComponent
   ],
   imports: [
     BrowserModule,
