@@ -63,6 +63,10 @@ div.icon {
   height: calc(100% + 17px);
 }
 
+app-cast-tv, app-cast-movie {
+  cursor: pointer;
+}
+
 @media screen and (max-width: 800px) {
   .content img {
     display: none;

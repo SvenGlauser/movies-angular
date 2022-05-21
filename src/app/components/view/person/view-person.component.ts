@@ -108,4 +108,8 @@ export class ViewPersonComponent implements OnInit {
   mapToMovie(element: any): MovieDetails {
     return <MovieDetails>element;
   }
+
+  getUrl(id: number, title: string): string {
+    return id.toString().concat('-', title.replace(/\s/g, '-').toLowerCase());
+  }
 }
