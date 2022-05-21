@@ -15,4 +15,8 @@ export class CastTvComponent {
   getImage() {
     return environment.images.url + environment.images.poster_sizes[3] + this.tv?.poster_path;
   }
+
+  isSmartphone() {
+    return window.matchMedia("only screen and (hover: none)").matches;
+  }
 }

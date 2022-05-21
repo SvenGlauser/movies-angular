@@ -1,4 +1,4 @@
-<div class="tv-wrapper" [matTooltip]="'A joué le rôle de ' + character">
+<div class="tv-wrapper" [matTooltipDisabled]="isSmartphone()" [matTooltip]="'A joué le rôle de ' + character">
   <div class="tv-image" [style.background-image]="'url(' + getImage() + ')'"></div>
   <div class="tv">
     <div>{{tv?.name}}</div>
