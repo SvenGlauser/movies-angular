@@ -89,7 +89,12 @@ export class TmdbApiService {
   }
 
   public getPerson(id: number): Observable<PersonDetails> {
-    return this.getRequest<PersonDetails>("/person/" + id);
+    return this.getRequest<PersonDetails>("/person/" + id).pipe(
+      map(person => {
+        person.birthday = new Date(person.birthday);
+        return person;
+      })
+    );
   }
 
   public getPersonCredit(id: number): Observable<CombinedCredit> {

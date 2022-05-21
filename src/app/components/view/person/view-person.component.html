@@ -13,7 +13,7 @@
             </div>
             <div class="icon">
               <mat-icon>cake</mat-icon>
-              <span>{{person?.birthday}}</span>
+              <span>{{person?.birthday?.toLocaleDateString()}}</span>
             </div>
             <div class="icon" *ngIf="person?.homepage !== null">
               <mat-icon>language</mat-icon>
