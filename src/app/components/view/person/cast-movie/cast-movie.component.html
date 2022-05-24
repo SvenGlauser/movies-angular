@@ -1,0 +1,6 @@
+<div class="movie-wrapper" [matTooltipDisabled]="isSmartphone()" [matTooltip]="'A joué le rôle de ' + character">
+  <div class="movie-image" [style.background-image]="'url(' + getImage() + ')'"></div>
+  <div class="movie">
+    <div>{{movie?.title}}</div>
+  </div>
+</div>
