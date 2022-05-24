@@ -35,6 +35,10 @@
         "seasons": "saisons",
         "episodes": "épisodes"
       }
+    },
+    "titles": {
+      "search": "Recherche",
+      "trending": "Tendances"
     }
   }
 }

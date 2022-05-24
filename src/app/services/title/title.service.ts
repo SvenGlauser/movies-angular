@@ -1,22 +1,27 @@
 import {Injectable} from '@angular/core';
 import {Title} from "@angular/platform-browser";
+import {TranslateService} from "@ngx-translate/core";
 
 @Injectable({
   providedIn: 'root'
 })
-export class TitleService extends Title {
+export class TitleService {
 
   private initialTitle: string = "The Movies Informations | Sven Glauser";
 
-  public override setTitle(newTitle: string) {
-    super.setTitle(this.getTitleString(newTitle));
+  constructor(private title: Title, private translate: TranslateService) {
+    this.resetTitle();
   }
 
-  private getTitleString(newTitle: string): string {
-    return newTitle + " | " + this.initialTitle
+  public setTitle(newTitle: string) {
+    this.translate.get('project.name').subscribe(title => {
+      this.title.setTitle(newTitle + ' | ' + title + " | Sven Glauser");
+    });
   }
 
   public resetTitle() {
-    super.setTitle(this.initialTitle);
+    this.translate.get('project.name').subscribe(title => {
+      this.title.setTitle(title);
+    });
   }
 }

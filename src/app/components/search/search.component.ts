@@ -7,6 +7,7 @@ import {Person} from "../../interfaces/search/person/person";
 import {FormControl, Validators} from "@angular/forms";
 import {ActivatedRoute, Router} from "@angular/router";
 import {TitleService} from "../../services/title/title.service";
+import {TranslateService} from "@ngx-translate/core";
 
 @Component({
   selector: 'app-search',
@@ -29,7 +30,8 @@ export class SearchComponent implements OnInit {
   constructor(private tmdbApiService: TmdbApiService,
               private titleService: TitleService,
               private route: ActivatedRoute,
-              public router: Router) {}
+              public router: Router,
+              private translate: TranslateService) {}
 
   search() {
     this.setFilter();
@@ -131,7 +133,9 @@ export class SearchComponent implements OnInit {
         this.trendingTvs = undefined;
         this.trendingMovies = undefined;
         this.search();
-        this.titleService.setTitle(`Recherche ${params['search']}`);
+        this.translate.get('project.titles.search').subscribe(title => {
+          this.titleService.setTitle(title + ` ${params['search']}`);
+        });
       } else {
         this.tvs = undefined;
         this.movies = undefined;
@@ -139,7 +143,9 @@ export class SearchComponent implements OnInit {
         this.searchValue.setValue('');
         this.searchedValue = undefined;
         this.trending();
-        this.titleService.setTitle('Trending');
+        this.translate.get('project.titles.trending').subscribe(title => {
+          this.titleService.setTitle(title);
+        });
       }
     });
   }

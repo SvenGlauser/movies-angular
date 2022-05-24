@@ -35,6 +35,10 @@
         "seasons": "Saisons",
         "episodes": "Folgen"
       }
+    },
+    "titles": {
+      "search": "Suche",
+      "trending": "Tendenz"
     }
   }
 }
