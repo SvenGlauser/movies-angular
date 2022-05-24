@@ -48,5 +48,6 @@ export const environment = {
       "original"
     ]
   },
-  url: "https://glausve.divtec.me/movies"
+  url: "https://glausve.divtec.me/movies",
+  baseHref: "/movies",
 };
