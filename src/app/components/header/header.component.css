@@ -30,3 +30,20 @@ div.language select {
 div.language select option {
   color: black;
 }
+
+@media screen and (max-width: 600px) {
+  h1 {
+    grid-column: 1 / 3;
+    text-align: left;
+  }
+
+  div.language {
+    grid-column: 3 / 4;
+  }
+}
+
+@media screen and (max-width: 400px) {
+  div.language mat-icon {
+    display: none;
+  }
+}
