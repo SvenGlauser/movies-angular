@@ -7,6 +7,7 @@ export const environment = {
   api: {
     key: "15f9d7fec19ec6b5b9bc491acd508fe6",
     languages: [
+      "de-DE",
       "fr-FR",
       "en-US",
     ],

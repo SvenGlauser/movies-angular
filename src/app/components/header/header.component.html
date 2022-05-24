@@ -3,8 +3,7 @@
   <div class="language">
     <mat-icon>language</mat-icon>
     <select name="language" id="language" (change)="changeLanguage()" [formControl]="language">
-      <option value="fr-FR">Français</option>
-      <option value="en-US">English</option>
+      <option *ngFor="let language of languages" [value]="language.isoCode">{{language.label}}</option>
     </select>
   </div>
 </mat-toolbar>
