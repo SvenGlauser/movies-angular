@@ -3,7 +3,7 @@
   <div class="background-content" [style.background-image]="'url(' + getBackgroundImage() + ')'">
     <div class="wrapper-content">
       <div class="content">
-        <img [src]="getImage()" alt="Image of movie">
+        <img [src]="getImage()" [alt]="'project.view.tv.image-alt' | translate">
         <div>
           <h1>{{getTitle()}}</h1>
           <ul class="list-genres">
@@ -20,16 +20,18 @@
             </div>
             <div class="icon">
               <mat-icon>tv</mat-icon>
-              <span>{{tv?.number_of_seasons}} saisons</span>
+              <span>{{tv?.number_of_seasons}} {{'project.view.tv.seasons' | translate}}</span>
             </div>
             <div class="icon">
               <mat-icon>videocam</mat-icon>
-              <span>{{tv?.number_of_episodes}} épisodes</span>
+              <span>{{tv?.number_of_episodes}} {{'project.view.tv.episodes' | translate}}</span>
             </div>
           </div>
         </div>
         <div class="overview">
-          <h2>Synopsis</h2>
+          <h2>
+            {{'project.view.tv.synopsis' | translate}}
+          </h2>
           <p>{{tv?.overview}}</p>
         </div>
       </div>

@@ -1,0 +1,40 @@
+{
+  "project": {
+    "name": "The Movie Informations",
+    "chargement": "Loading...",
+    "movie": {
+      "image-alt": "Image from movie"
+    },
+    "person": {
+      "image-alt": "Image from person"
+    },
+    "tv": {
+      "image-alt": "Image from tv show"
+    },
+    "search": {
+      "movies": "Movies",
+      "persons": "Persons",
+      "tvs": "TV Shows",
+      "search": "Search",
+      "search-placeholder": "Search for a movie, person or tv show",
+      "result-for": "result for",
+      "no-result": "No result"
+    },
+    "view": {
+      "movie": {
+        "image-alt": "Image from movie",
+        "synopsis": "Synopsis"
+      },
+      "person": {
+        "image-alt": "Image from person",
+        "role": "Played the role of : "
+      },
+      "tv": {
+        "image-alt": "Image from tv show",
+        "synopsis": "Synopsis",
+        "seasons": "seasons",
+        "episodes": "episodes"
+      }
+    }
+  }
+}

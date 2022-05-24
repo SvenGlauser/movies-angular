@@ -30,7 +30,7 @@ export class ViewMovieComponent implements OnInit {
   }
 
   getTitle() {
-    return this.movie?.title + (this.movie?.original_language !== environment.api.language && this.movie?.original_title !== this.movie?.title ? ' (' + this.movie?.original_title + ')' : '');
+    return this.movie?.title + (this.movie?.original_title !== this.movie?.title ? ' (' + this.movie?.original_title + ')' : '');
   }
 
   ngOnInit(): void {

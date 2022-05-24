@@ -1,0 +1,40 @@
+{
+  "project": {
+    "name": "The Movie Informations",
+    "chargement": "Chargement...",
+    "movie": {
+      "image-alt": "Image du film"
+    },
+    "person": {
+      "image-alt": "Photo de la personne"
+    },
+    "tv": {
+      "image-alt": "Image de la série"
+    },
+    "search": {
+      "movies": "Films",
+      "persons": "Personnes",
+      "tvs": "Séries",
+      "search": "Rechercher",
+      "search-placeholder": "Rechercher un film, une personne ou une série",
+      "result-for": "résultats pour",
+      "no-result": "Aucun résultat"
+    },
+    "view": {
+      "movie": {
+        "image-alt": "Image du film",
+        "synopsis": "Synopsis"
+      },
+      "person": {
+        "image-alt": "Photo de la personne",
+        "role": "A joué le rôle de : "
+      },
+      "tv": {
+        "image-alt": "Image de la série",
+        "synopsis": "Synopsis",
+        "seasons": "saisons",
+        "episodes": "épisodes"
+      }
+    }
+  }
+}

@@ -1,5 +1,5 @@
 import {Component} from '@angular/core';
-import {Router} from "@angular/router";
+import {FormControl, Validators} from "@angular/forms";
 
 @Component({
   selector: 'app-header',
@@ -8,5 +8,15 @@ import {Router} from "@angular/router";
 })
 export class HeaderComponent {
 
-  constructor(private router: Router) {}
+  language = new FormControl(localStorage.getItem("language") || "fr-FR", Validators.required);
+  languages: {label: string, isoCode: string}[] = [
+    {label: "Deutsch", isoCode: "de-DE"},
+    {label: "English", isoCode: "en-US"},
+    {label: "Français", isoCode: "fr-FR"},
+  ];
+
+  changeLanguage() {
+    localStorage.setItem("language", this.language.value);
+    window.location.reload();
+  }
 }
