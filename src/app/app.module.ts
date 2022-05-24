@@ -3,7 +3,7 @@ import {BrowserModule} from '@angular/platform-browser';
 
 import {AppComponent} from './app.component';
 import {MaterialModule} from "./material/material.module";
-import {HttpClientModule} from "@angular/common/http";
+import {HttpClient, HttpClientModule} from "@angular/common/http";
 import {HeaderComponent} from './components/header/header.component';
 import {SearchComponent} from './components/search/search.component';
 import {AppRoutingModule} from "./app-routing.modules";
@@ -15,9 +15,11 @@ import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
 import {ViewMovieComponent} from './components/view/movie/view-movie.component';
 import {ChargementComponent} from './components/chargement/chargement.component';
 import {ViewTvComponent} from './components/view/tv/view-tv.component';
-import { ViewPersonComponent } from './components/view/person/view-person.component';
-import { CastMovieComponent } from './components/view/person/cast-movie/cast-movie.component';
-import { CastTvComponent } from './components/view/person/cast-tv/cast-tv.component';
+import {ViewPersonComponent} from './components/view/person/view-person.component';
+import {CastMovieComponent} from './components/view/person/cast-movie/cast-movie.component';
+import {CastTvComponent} from './components/view/person/cast-tv/cast-tv.component';
+import {TranslateLoader, TranslateModule} from "@ngx-translate/core";
+import {TranslateHttpLoader} from "@ngx-translate/http-loader";
 
 @NgModule({
   declarations: [
@@ -41,9 +43,21 @@ import { CastTvComponent } from './components/view/person/cast-tv/cast-tv.compon
     HttpClientModule,
     AppRoutingModule,
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    TranslateModule.forRoot({
+      loader: {
+        provide: TranslateLoader,
+        useFactory: HttpLoaderFactory,
+        deps: [HttpClient]
+      }
+    })
   ],
   providers: [],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
+
+// required for AOT compilation
+export function HttpLoaderFactory(http: HttpClient): TranslateHttpLoader {
+  return new TranslateHttpLoader(http);
+}

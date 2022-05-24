@@ -7,8 +7,6 @@ import {CombinedCredit} from "../../../interfaces/details/combined-credit/combin
 import {MovieDetails} from "../../../interfaces/details/movie/movie-details";
 import {TvDetails} from "../../../interfaces/details/tv/tv-details";
 import {environment} from "../../../../environments/environment";
-import {Tv} from "../../../interfaces/search/tv/tv";
-import {Movie} from "../../../interfaces/search/movie/movie";
 
 @Component({
   selector: 'app-view-person',

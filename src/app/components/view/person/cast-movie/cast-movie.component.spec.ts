@@ -1,6 +1,6 @@
-import { ComponentFixture, TestBed } from '@angular/core/testing';
+import {ComponentFixture, TestBed} from '@angular/core/testing';
 
-import { CastMovieComponent } from './cast-movie.component';
+import {CastMovieComponent} from './cast-movie.component';
 
 describe('CastMovieComponent', () => {
   let component: CastMovieComponent;

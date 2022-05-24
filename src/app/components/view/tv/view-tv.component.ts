@@ -30,7 +30,7 @@ export class ViewTvComponent implements OnInit {
   }
 
   getTitle() {
-    return this.tv?.name + (this.tv?.original_language !== environment.api.language && this.tv?.original_name !== this.tv?.name ? ' (' + this.tv?.original_name + ')' : '');
+    return this.tv?.name + (this.tv?.original_name !== this.tv?.name ? ' (' + this.tv?.original_name + ')' : '');
   }
 
   ngOnInit(): void {

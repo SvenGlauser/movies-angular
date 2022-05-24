@@ -1,6 +1,6 @@
-import { ComponentFixture, TestBed } from '@angular/core/testing';
+import {ComponentFixture, TestBed} from '@angular/core/testing';
 
-import { CastTvComponent } from './cast-tv.component';
+import {CastTvComponent} from './cast-tv.component';
 
 describe('CastTvComponent', () => {
   let component: CastTvComponent;

@@ -3,7 +3,7 @@
   <div class="background-content" [style.background-image]="'url(' + backgroundImage + ')'">
     <div class="wrapper-content">
       <div class="content">
-        <img [src]="getImage()" alt="Profile image">
+        <img [src]="getImage()" [alt]="'project.view.person.image-alt' | translate">
         <div>
           <h1>{{ person?.name }}</h1>
           <div class="icons">
