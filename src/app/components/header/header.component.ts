@@ -1,5 +1,6 @@
 import {Component} from '@angular/core';
 import {FormControl, Validators} from "@angular/forms";
+import {environment} from "../../../environments/environment";
 
 @Component({
   selector: 'app-header',
@@ -9,12 +10,7 @@ import {FormControl, Validators} from "@angular/forms";
 export class HeaderComponent {
 
   language = new FormControl(localStorage.getItem("language") || "fr-FR", Validators.required);
-  languages: {label: string, isoCode: string}[] = [
-    {label: "Deutsch", isoCode: "de-DE"},
-    {label: "English", isoCode: "en-US"},
-    {label: "Français", isoCode: "fr-FR"},
-  ];
-
+  languages = environment.api.languages;
   changeLanguage() {
     localStorage.setItem("language", this.language.value);
     window.location.reload();

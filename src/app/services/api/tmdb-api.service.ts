@@ -42,7 +42,7 @@ export class TmdbApiService {
       },
       {
         param: "language",
-        value: environment.api.languages.includes(localStorage.getItem("language") || "") ? localStorage.getItem("language") : "fr-FR",
+        value: (localStorage.getItem("language") || "") in environment.api.languages ? localStorage.getItem("language") : "fr-FR",
       }
     ].concat(params);
 

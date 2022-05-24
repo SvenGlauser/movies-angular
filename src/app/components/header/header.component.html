@@ -2,8 +2,8 @@
   <h1 [routerLink]="['/']">{{'project.name' | translate}}</h1>
   <div class="language">
     <mat-icon>language</mat-icon>
-    <select name="language" id="language" (change)="changeLanguage()" [formControl]="language">
-      <option *ngFor="let language of languages" [value]="language.isoCode">{{language.label}}</option>
-    </select>
+    <mat-select [formControl]="language" (selectionChange)="changeLanguage()">
+      <mat-option *ngFor="let language of languages | keyvalue" [value]="language.key">{{language.value}}</mat-option>
+    </mat-select>
   </div>
 </mat-toolbar>
