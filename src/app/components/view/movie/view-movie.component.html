@@ -28,7 +28,7 @@
             </div>
           </div>
         </div>
-        <div class="overview">
+        <div class="overview" *ngIf="movie?.overview">
           <h2>
             {{'project.view.movie.synopsis' | translate}}
           </h2>
