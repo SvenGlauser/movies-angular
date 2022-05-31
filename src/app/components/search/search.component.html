@@ -62,7 +62,7 @@
           </ng-container>
         </div>
         <ng-template #trending>
-          <div class="result">
+          <div>
             <ng-container *ngFor="let trending of getTrending()">
               <app-movie *ngIf="trending.media_type === 'movie'" [movie]="mapToMovie(trending)" [routerLink]="['/view/movie/' + getUrl(trending.id, mapToMovie(trending).original_title)]"></app-movie>
               <app-tv *ngIf="trending.media_type === 'tv'" [tv]="mapToTv(trending)" [routerLink]="['/view/tv/'  + getUrl(trending.id, mapToTv(trending).original_name)]"></app-tv>
@@ -72,4 +72,24 @@
       </section>
     </ng-template>
   </div>
+</div>
+<div class="informations-site">
+  <span>
+    <a href="https://github.com/SvenGlauser/movies-angular/issues/new" target="_blank">
+      Bug ?
+    </a>
+  </span>
+  <span>
+    <a href="https://github.com/SvenGlauser/movies-angular/" target="_blank">
+      Github
+    </a>
+  </span>
+  <span>
+    <a href="https://www.themoviedb.org/" target="_blank">
+      API
+    </a>
+  </span>
+  <span>
+    Version {{version}}
+  </span>
 </div>

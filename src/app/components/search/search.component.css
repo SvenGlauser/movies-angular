@@ -2,7 +2,7 @@
   display: flex;
   justify-content: space-between;
   gap: 20px;
-  padding: 15px;
+  padding: 15px 15px 0 15px;
 }
 
 .aucun-resultat {
@@ -63,6 +63,14 @@ mat-button-toggle.mat-button-toggle-checked {
 
 app-movie, app-tv, app-person {
   cursor: pointer;
+}
+
+.informations-site {
+  padding: 0 35px 35px 35px;
+  display: flex;
+  justify-content: flex-end;
+  gap: 20px;
+  color: #ccc;
 }
 
 @media screen and (max-width: 800px) {
