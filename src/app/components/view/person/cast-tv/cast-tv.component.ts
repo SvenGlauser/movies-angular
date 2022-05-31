@@ -10,6 +10,7 @@ import {environment} from "../../../../../environments/environment";
 export class CastTvComponent {
 
   @Input() tv?: TvDetails;
+  @Input() title?: string;
   @Input() character?: string;
 
   getImage() {

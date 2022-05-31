@@ -28,9 +28,19 @@
         <div class="biography">{{ person?.biography }}</div>
         <div class="wrapper-movie">
           <div class="movie">
-            <ng-container *ngFor="let filmOrTv of filmsAndTv">
-              <app-cast-movie *ngIf="filmOrTv.type === 'movie'" [routerLink]="['/view/movie/' + getUrl(filmOrTv.element.id, mapToMovie(filmOrTv.element).original_title)]" [movie]="mapToMovie(filmOrTv.element)" [character]="filmOrTv.character"></app-cast-movie>
-              <app-cast-tv *ngIf="filmOrTv.type === 'tv'" [routerLink]="['/view/tv/' + getUrl(filmOrTv.element.id, mapToTv(filmOrTv.element).original_name)]" [tv]="mapToTv(filmOrTv.element)" [character]="filmOrTv.character"></app-cast-tv>
+            <ng-container [ngSwitch]="this.person?.known_for_department">
+              <ng-container *ngSwitchCase="'Directing'">
+                <ng-container *ngFor="let filmOrTv of crew">
+                  <app-cast-movie *ngIf="filmOrTv.type === 'movie'" [routerLink]="['/view/movie/' + getUrl(filmOrTv.element.id, mapToMovie(filmOrTv.element).original_title)]" [movie]="mapToMovie(filmOrTv.element)" [title]="filmOrTv.roles.join(' - ')"></app-cast-movie>
+                  <app-cast-tv *ngIf="filmOrTv.type === 'tv'" [routerLink]="['/view/tv/' + getUrl(filmOrTv.element.id, mapToTv(filmOrTv.element).original_name)]" [tv]="mapToTv(filmOrTv.element)" [title]="filmOrTv.roles.join(' - ')"></app-cast-tv>
+                </ng-container>
+              </ng-container>
+              <ng-container *ngSwitchDefault>
+                <ng-container *ngFor="let filmOrTv of filmsAndTv">
+                  <app-cast-movie *ngIf="filmOrTv.type === 'movie'" [routerLink]="['/view/movie/' + getUrl(filmOrTv.element.id, mapToMovie(filmOrTv.element).original_title)]" [movie]="mapToMovie(filmOrTv.element)" [character]="filmOrTv.character"></app-cast-movie>
+                  <app-cast-tv *ngIf="filmOrTv.type === 'tv'" [routerLink]="['/view/tv/' + getUrl(filmOrTv.element.id, mapToTv(filmOrTv.element).original_name)]" [tv]="mapToTv(filmOrTv.element)" [character]="filmOrTv.character"></app-cast-tv>
+                </ng-container>
+              </ng-container>
             </ng-container>
           </div>
         </div>

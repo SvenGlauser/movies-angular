@@ -1,6 +1,6 @@
-<div class="movie-wrapper" [matTooltipDisabled]="isSmartphone()" [matTooltip]="('project.view.person.role' | translate) + character">
+<div class="movie-wrapper" [matTooltipDisabled]="character === undefined || isSmartphone()" [matTooltip]="('project.view.person.role' | translate) + character">
   <div class="movie-image" [style.background-image]="'url(' + getImage() + ')'"></div>
   <div class="movie">
-    <div>{{movie?.title}}</div>
+    <div>{{title || movie?.title}}</div>
   </div>
 </div>
