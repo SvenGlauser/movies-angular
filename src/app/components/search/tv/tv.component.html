@@ -4,4 +4,9 @@
     <h3>{{tv.name}}</h3>
     <p>{{tv.overview}}</p>
   </div>
+  <div class="note-wrapper" [ngStyle]="getConicGradient()">
+    <div class="note">
+      {{tv.vote_average}}
+    </div>
+  </div>
 </div>

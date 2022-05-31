@@ -34,4 +34,12 @@ export class TvComponent {
       return "assets/image_not_found.png";
     return environment.images.url + environment.images.poster_sizes[3] + this.tv.poster_path;
   }
+
+  getConicGradient(): {background: string} {
+    let deg = this.tv.vote_average * 36;
+
+    let color = String("rgba(" + String((255 * (100 - this.tv.vote_average * 10)) / 100) + "," + String((255 * this.tv.vote_average * 10) / 100) + "," + 0) + ")";
+
+    return {background: "conic-gradient(" + color + " " + deg + "deg, #eee " + deg + "deg)"};
+  }
 }

@@ -2,8 +2,9 @@
   display: flex;
   gap: 20px;
 
+  position: relative;
+
   border-radius: 20px;
-  overflow: hidden;
 
   background-color: #eee;
 
@@ -19,6 +20,7 @@
 
 .content div {
   flex-grow: 1;
+  overflow: hidden;
 }
 
 .content div h3 {
@@ -42,6 +44,27 @@
   height: 75px;
   mix-blend-mode: darken;
   align-self: center;
+}
+
+.note-wrapper {
+  position: absolute;
+  background: #eee;
+  border-radius: 50%;
+  height: 40px;
+  width: 40px;
+  top: -10px;
+  left: -10px;
+  padding: 5px;
+  box-shadow: 0 0 0 1px #eee, 0 0 0 2px #ccc;
+}
+
+.note {
+  background: #eee;
+  border-radius: 50%;
+  height: 100%;
+  line-height: 30px;
+  text-align: center;
+  position: relative;
 }
 
 @media screen and (max-width: 380px) {

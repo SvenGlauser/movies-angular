@@ -4,4 +4,9 @@
     <h3>{{movie.title}}</h3>
     <p>{{movie.overview}}</p>
   </div>
+  <div class="note-wrapper" [ngStyle]="getConicGradient()">
+    <div class="note">
+      {{movie.vote_average}}
+    </div>
+  </div>
 </div>

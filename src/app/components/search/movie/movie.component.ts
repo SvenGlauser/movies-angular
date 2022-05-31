@@ -5,7 +5,7 @@ import {environment} from "../../../../environments/environment";
 @Component({
   selector: 'app-movie',
   templateUrl: './movie.component.html',
-  styleUrls: ['./movie.component.css']
+  styleUrls: ['./movie.component.css'],
 })
 export class MovieComponent {
 
@@ -34,5 +34,13 @@ export class MovieComponent {
     if (this.movie.poster_path === null)
       return "assets/image_not_found.png";
     return environment.images.url + environment.images.poster_sizes[3] + this.movie.poster_path;
+  }
+
+  getConicGradient(): {background: string} {
+    let deg = this.movie.vote_average * 36;
+
+    let color = String("rgba(" + String((255 * (100 - this.movie.vote_average * 10)) / 100) + "," + String((255 * this.movie.vote_average * 10) / 100) + "," + 0) + ")";
+
+    return {background: "conic-gradient(" + color + " " + deg + "deg, #eee " + deg + "deg)"};
   }
 }
