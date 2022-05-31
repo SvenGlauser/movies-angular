@@ -27,7 +27,8 @@
       },
       "person": {
         "image-alt": "Bild von Person",
-        "role": "Spielte die Rolle von : "
+        "role": "Spielte die Rolle von : ",
+        "departement": "Departments : "
       },
       "tv": {
         "image-alt": "Bild aus einer Fernsehsendung",

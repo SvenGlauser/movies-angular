@@ -31,8 +31,8 @@
             <ng-container [ngSwitch]="this.person?.known_for_department">
               <ng-container *ngSwitchCase="'Directing'">
                 <ng-container *ngFor="let filmOrTv of crew">
-                  <app-cast-movie *ngIf="filmOrTv.type === 'movie'" [routerLink]="['/view/movie/' + getUrl(filmOrTv.element.id, mapToMovie(filmOrTv.element).original_title)]" [movie]="mapToMovie(filmOrTv.element)" [title]="filmOrTv.roles.join(' - ')"></app-cast-movie>
-                  <app-cast-tv *ngIf="filmOrTv.type === 'tv'" [routerLink]="['/view/tv/' + getUrl(filmOrTv.element.id, mapToTv(filmOrTv.element).original_name)]" [tv]="mapToTv(filmOrTv.element)" [title]="filmOrTv.roles.join(' - ')"></app-cast-tv>
+                  <app-cast-movie *ngIf="filmOrTv.type === 'movie'" [routerLink]="['/view/movie/' + getUrl(filmOrTv.element.id, mapToMovie(filmOrTv.element).original_title)]" [movie]="mapToMovie(filmOrTv.element)" [departement]="filmOrTv.roles.join(' - ')"></app-cast-movie>
+                  <app-cast-tv *ngIf="filmOrTv.type === 'tv'" [routerLink]="['/view/tv/' + getUrl(filmOrTv.element.id, mapToTv(filmOrTv.element).original_name)]" [tv]="mapToTv(filmOrTv.element)" [departement]="filmOrTv.roles.join(' - ')"></app-cast-tv>
                 </ng-container>
               </ng-container>
               <ng-container *ngSwitchDefault>
