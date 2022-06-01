@@ -1,6 +1,6 @@
 import {Injectable} from '@angular/core';
 import {HttpClient} from "@angular/common/http";
-import {catchError, EMPTY, map, Observable} from "rxjs";
+import {catchError, EMPTY, map, Observable, throwError} from "rxjs";
 import {environment} from "../../../environments/environment";
 import {Result} from "../../interfaces/search/result/result";
 import {MovieDetails} from "../../interfaces/details/movie/movie-details";
@@ -12,6 +12,7 @@ import {Tv} from "../../interfaces/search/tv/tv";
 import {Movie} from "../../interfaces/search/movie/movie";
 import {PersonDetails} from "../../interfaces/details/person/person-details";
 import {CombinedCredit} from "../../interfaces/details/combined-credit/combined-credit";
+import {throws} from "assert";
 
 @Injectable({
   providedIn: 'root'
@@ -53,10 +54,8 @@ export class TmdbApiService {
 
     return this.http.get<Type>(environment.api.url + url + parametersString).pipe(
       catchError((err, caught) => {
-        this.router.navigate([""]);
-        this.snackBar.open("Error : " + err.status + " with text : " + err.statusText, "Close")
-        console.log(err);
-        return EMPTY;
+        this.snackBar.open("Error : " + err.status + " with text : " + err.statusText, "Close", {duration: 3000});
+        return throwError(err);
       })
     );
   }

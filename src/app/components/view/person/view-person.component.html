@@ -1,50 +1,53 @@
-<app-chargement *ngIf="!person || chargement; else content"></app-chargement>
-<ng-template #content>
-  <div class="background-content" [style.background-image]="'url(' + backgroundImage + ')'">
-    <div class="wrapper-content">
-      <div class="content">
-        <img [src]="getImage()" [alt]="'project.view.person.image-alt' | translate">
-        <div>
-          <h1>{{ person?.name }}</h1>
-          <div class="icons">
-            <div class="icon">
-              <mat-icon>domain</mat-icon>
-              <span>{{person?.known_for_department}}</span>
-            </div>
-            <div class="icon">
-              <mat-icon>cake</mat-icon>
-              <span>{{person?.birthday?.toLocaleDateString()}}</span>
-            </div>
-            <div class="icon" *ngIf="person?.homepage !== null">
-              <mat-icon>language</mat-icon>
-              <span><a class="site" [href]="person?.homepage" target="_blank">{{person?.homepage}}</a></span>
-            </div>
-            <div class="icon" *ngIf="person?.deathday">
-              <mat-icon>{{person?.gender === 2 ? 'elderly' : 'elderly_woman'}}</mat-icon>
-              <span>{{person?.deathday}}</span>
+<app-header></app-header>
+<div class="page-content">
+  <app-chargement *ngIf="!person || chargement; else content"></app-chargement>
+  <ng-template #content>
+    <div class="background-content" [style.background-image]="'url(' + backgroundImage + ')'">
+      <div class="wrapper-content">
+        <div class="content">
+          <img [src]="getImage()" [alt]="'project.view.person.image-alt' | translate">
+          <div>
+            <h1>{{ person?.name }}</h1>
+            <div class="icons">
+              <div class="icon">
+                <mat-icon>domain</mat-icon>
+                <span>{{person?.known_for_department}}</span>
+              </div>
+              <div class="icon">
+                <mat-icon>cake</mat-icon>
+                <span>{{person?.birthday?.toLocaleDateString()}}</span>
+              </div>
+              <div class="icon" *ngIf="person?.homepage !== null">
+                <mat-icon>language</mat-icon>
+                <span><a class="site" [href]="person?.homepage" target="_blank">{{person?.homepage}}</a></span>
+              </div>
+              <div class="icon" *ngIf="person?.deathday">
+                <mat-icon>{{person?.gender === 2 ? 'elderly' : 'elderly_woman'}}</mat-icon>
+                <span>{{person?.deathday}}</span>
+              </div>
             </div>
           </div>
-        </div>
-        <div class="biography">{{ person?.biography }}</div>
-        <div class="wrapper-movie">
-          <div class="movie">
-            <ng-container [ngSwitch]="this.person?.known_for_department">
-              <ng-container *ngSwitchCase="'Directing'">
-                <ng-container *ngFor="let filmOrTv of crew">
-                  <app-cast-movie *ngIf="filmOrTv.type === 'movie'" [routerLink]="['/view/movie/' + getUrl(filmOrTv.element.id, mapToMovie(filmOrTv.element).original_title)]" [movie]="mapToMovie(filmOrTv.element)" [departement]="filmOrTv.roles.join(' - ')"></app-cast-movie>
-                  <app-cast-tv *ngIf="filmOrTv.type === 'tv'" [routerLink]="['/view/tv/' + getUrl(filmOrTv.element.id, mapToTv(filmOrTv.element).original_name)]" [tv]="mapToTv(filmOrTv.element)" [departement]="filmOrTv.roles.join(' - ')"></app-cast-tv>
+          <div class="biography">{{ person?.biography }}</div>
+          <div class="wrapper-movie">
+            <div class="movie">
+              <ng-container [ngSwitch]="this.person?.known_for_department">
+                <ng-container *ngSwitchCase="'Directing'">
+                  <ng-container *ngFor="let filmOrTv of crew">
+                    <app-cast-movie *ngIf="filmOrTv.type === 'movie'" [routerLink]="['/view/movie/' + getUrl(filmOrTv.element.id, mapToMovie(filmOrTv.element).original_title)]" [movie]="mapToMovie(filmOrTv.element)" [departement]="filmOrTv.roles.join(' - ')"></app-cast-movie>
+                    <app-cast-tv *ngIf="filmOrTv.type === 'tv'" [routerLink]="['/view/tv/' + getUrl(filmOrTv.element.id, mapToTv(filmOrTv.element).original_name)]" [tv]="mapToTv(filmOrTv.element)" [departement]="filmOrTv.roles.join(' - ')"></app-cast-tv>
+                  </ng-container>
+                </ng-container>
+                <ng-container *ngSwitchDefault>
+                  <ng-container *ngFor="let filmOrTv of filmsAndTv">
+                    <app-cast-movie *ngIf="filmOrTv.type === 'movie'" [routerLink]="['/view/movie/' + getUrl(filmOrTv.element.id, mapToMovie(filmOrTv.element).original_title)]" [movie]="mapToMovie(filmOrTv.element)" [character]="filmOrTv.character"></app-cast-movie>
+                    <app-cast-tv *ngIf="filmOrTv.type === 'tv'" [routerLink]="['/view/tv/' + getUrl(filmOrTv.element.id, mapToTv(filmOrTv.element).original_name)]" [tv]="mapToTv(filmOrTv.element)" [character]="filmOrTv.character"></app-cast-tv>
+                  </ng-container>
                 </ng-container>
               </ng-container>
-              <ng-container *ngSwitchDefault>
-                <ng-container *ngFor="let filmOrTv of filmsAndTv">
-                  <app-cast-movie *ngIf="filmOrTv.type === 'movie'" [routerLink]="['/view/movie/' + getUrl(filmOrTv.element.id, mapToMovie(filmOrTv.element).original_title)]" [movie]="mapToMovie(filmOrTv.element)" [character]="filmOrTv.character"></app-cast-movie>
-                  <app-cast-tv *ngIf="filmOrTv.type === 'tv'" [routerLink]="['/view/tv/' + getUrl(filmOrTv.element.id, mapToTv(filmOrTv.element).original_name)]" [tv]="mapToTv(filmOrTv.element)" [character]="filmOrTv.character"></app-cast-tv>
-                </ng-container>
-              </ng-container>
-            </ng-container>
+            </div>
           </div>
         </div>
       </div>
     </div>
-  </div>
-</ng-template>
+  </ng-template>
+</div>

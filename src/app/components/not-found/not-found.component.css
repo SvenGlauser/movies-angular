@@ -1,0 +1,42 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@900&display=swap');
+
+app-header, app-footer {
+  height: var(--header-height);
+}
+
+.content {
+  min-height: calc(100vh - var(--header-height) * 2);
+
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
+  text-align: center;
+}
+
+.content > * {
+  margin: 0;
+}
+
+.titre {
+  font-size: 6rem;
+  font-weight: 600;
+  height: 120px;
+  line-height: 120px;
+  font-family: 'Montserrat', sans-serif;
+  background-image: url("https://images.telescope.com/get/ap1509_1292012.jpg");
+  background-repeat: repeat;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-position: center;
+  background-size: cover;
+}
+
+@media screen and (max-width: 400px) {
+  .titre {
+    font-size: 4rem;
+    height: 80px;
+    line-height: 80px;
+  }
+}

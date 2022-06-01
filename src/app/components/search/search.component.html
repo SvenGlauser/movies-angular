@@ -1,3 +1,4 @@
+<app-header></app-header>
 <div class="content">
   <div class="left" *ngIf="(hasPersons() || hasMovies() || hasTVs()) && chargement === 0 || chargement !== 0">
     <section class="filter">
@@ -73,23 +74,4 @@
     </ng-template>
   </div>
 </div>
-<div class="informations-site">
-  <span>
-    <a href="https://github.com/SvenGlauser/movies-angular/issues/new" target="_blank">
-      Bug ?
-    </a>
-  </span>
-  <span>
-    <a href="https://github.com/SvenGlauser/movies-angular/" target="_blank">
-      Github
-    </a>
-  </span>
-  <span>
-    <a href="https://www.themoviedb.org/" target="_blank">
-      API
-    </a>
-  </span>
-  <span>
-    Version {{version}}
-  </span>
-</div>
+<app-footer></app-footer>

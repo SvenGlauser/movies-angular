@@ -1,40 +1,43 @@
-<app-chargement *ngIf="!tv; else content"></app-chargement>
-<ng-template #content>
-  <div class="background-content" [style.background-image]="'url(' + getBackgroundImage() + ')'">
-    <div class="wrapper-content">
-      <div class="content">
-        <img [src]="getImage()" [alt]="'project.view.tv.image-alt' | translate">
-        <div>
-          <h1>{{getTitle()}}</h1>
-          <ul class="list-genres">
-            <li *ngFor="let genre of tv?.genres">{{genre.name}}</li>
-          </ul>
-          <div class="icons">
-            <div class="icon">
-              <mat-icon>event</mat-icon>
-              <span>{{tv?.first_air_date?.toLocaleDateString()}} - {{tv?.last_air_date?.toLocaleDateString()}}</span>
-            </div>
-            <div class="icon">
-              <mat-icon>language</mat-icon>
-              <span>{{tv?.original_language?.toUpperCase()}}</span>
-            </div>
-            <div class="icon">
-              <mat-icon>tv</mat-icon>
-              <span>{{tv?.number_of_seasons}} {{'project.view.tv.seasons' | translate}}</span>
-            </div>
-            <div class="icon">
-              <mat-icon>videocam</mat-icon>
-              <span>{{tv?.number_of_episodes}} {{'project.view.tv.episodes' | translate}}</span>
+<app-header></app-header>
+<div class="page-content">
+  <app-chargement *ngIf="!tv; else content"></app-chargement>
+  <ng-template #content>
+    <div class="background-content" [style.background-image]="'url(' + getBackgroundImage() + ')'">
+      <div class="wrapper-content">
+        <div class="content">
+          <img [src]="getImage()" [alt]="'project.view.tv.image-alt' | translate">
+          <div>
+            <h1>{{getTitle()}}</h1>
+            <ul class="list-genres">
+              <li *ngFor="let genre of tv?.genres">{{genre.name}}</li>
+            </ul>
+            <div class="icons">
+              <div class="icon">
+                <mat-icon>event</mat-icon>
+                <span>{{tv?.first_air_date?.toLocaleDateString()}} - {{tv?.last_air_date?.toLocaleDateString()}}</span>
+              </div>
+              <div class="icon">
+                <mat-icon>language</mat-icon>
+                <span>{{tv?.original_language?.toUpperCase()}}</span>
+              </div>
+              <div class="icon">
+                <mat-icon>tv</mat-icon>
+                <span>{{tv?.number_of_seasons}} {{'project.view.tv.seasons' | translate}}</span>
+              </div>
+              <div class="icon">
+                <mat-icon>videocam</mat-icon>
+                <span>{{tv?.number_of_episodes}} {{'project.view.tv.episodes' | translate}}</span>
+              </div>
             </div>
           </div>
-        </div>
-        <div class="overview" *ngIf="tv?.overview">
-          <h2>
-            {{'project.view.tv.synopsis' | translate}}
-          </h2>
-          <p>{{tv?.overview}}</p>
+          <div class="overview" *ngIf="tv?.overview">
+            <h2>
+              {{'project.view.tv.synopsis' | translate}}
+            </h2>
+            <p>{{tv?.overview}}</p>
+          </div>
         </div>
       </div>
     </div>
-  </div>
-</ng-template>
+  </ng-template>
+</div>

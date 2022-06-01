@@ -21,6 +21,8 @@ import {CastTvComponent} from './components/view/person/cast-tv/cast-tv.componen
 import {TranslateLoader, TranslateModule} from "@ngx-translate/core";
 import {CustomTranslateLoaderService} from "./services/custom-translate-loader/custom-translate-loader.service";
 import {environment} from "../environments/environment";
+import { NotFoundComponent } from './components/not-found/not-found.component';
+import { FooterComponent } from './components/footer/footer.component';
 
 @NgModule({
   declarations: [
@@ -35,7 +37,9 @@ import {environment} from "../environments/environment";
     ViewTvComponent,
     ViewPersonComponent,
     CastMovieComponent,
-    CastTvComponent
+    CastTvComponent,
+    NotFoundComponent,
+    FooterComponent
   ],
   imports: [
     BrowserModule,

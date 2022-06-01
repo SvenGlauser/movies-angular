@@ -39,7 +39,12 @@
     },
     "titles": {
       "search": "Suche",
-      "trending": "Tendenz"
+      "trending": "Tendenz",
+      "404": "404"
+    },
+    "404": {
+      "title": "404 - Seite nicht gefunden",
+      "message": "Die Seite, die Sie suchen, konnte nicht gefunden werden."
     }
   }
 }

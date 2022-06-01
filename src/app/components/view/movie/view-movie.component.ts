@@ -4,6 +4,7 @@ import {MovieDetails} from "../../../interfaces/details/movie/movie-details";
 import {TmdbApiService} from "../../../services/api/tmdb-api.service";
 import {environment} from "../../../../environments/environment";
 import {TitleService} from "../../../services/title/title.service";
+import {catchError, throwError} from "rxjs";
 
 @Component({
   selector: 'app-view-movie',
@@ -39,7 +40,12 @@ export class ViewMovieComponent implements OnInit {
       if (params['id'] === undefined) {
         this.router.navigate(['/404']).then();
       } else {
-        this.tmdbApiService.getMovie(params['id'].toString().split('-')[0]).subscribe(movie => {
+        this.tmdbApiService.getMovie(params['id'].toString().split('-')[0]).pipe(
+          catchError(err => {
+            this.router.navigate(['/404']).then();
+            return throwError(err);
+          })
+        ).subscribe(movie => {
           this.movie = movie;
           this.titleService.setTitle(movie?.title);
         });

@@ -8,6 +8,7 @@ import {MovieDetails} from "../../../interfaces/details/movie/movie-details";
 import {TvDetails} from "../../../interfaces/details/tv/tv-details";
 import {environment} from "../../../../environments/environment";
 import {Crew} from "../../../interfaces/details/crew/crew";
+import {catchError, throwError} from "rxjs";
 
 @Component({
   selector: 'app-view-person',
@@ -36,7 +37,12 @@ export class ViewPersonComponent implements OnInit {
       if (params['id'] === undefined) {
         this.router.navigate(['/404']).then();
       } else {
-        this.tmdbApiService.getPerson(params['id'].toString().split('-')[0]).subscribe(person => {
+        this.tmdbApiService.getPerson(params['id'].toString().split('-')[0]).pipe(
+          catchError(err => {
+            this.router.navigate(['/404']).then();
+            return throwError(err);
+          })
+        ).subscribe(person => {
           this.person = person;
           this.titleService.setTitle(person?.name);
           switch (this.person.known_for_department) {

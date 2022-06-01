@@ -8,7 +8,6 @@ import {FormControl, Validators} from "@angular/forms";
 import {ActivatedRoute, Router} from "@angular/router";
 import {TitleService} from "../../services/title/title.service";
 import {TranslateService} from "@ngx-translate/core";
-import packageInfo from '../../../../package.json';
 
 @Component({
   selector: 'app-search',
@@ -27,8 +26,6 @@ export class SearchComponent implements OnInit {
 
   chargement: number = 0;
   filter: FormControl = new FormControl('', [Validators.required]);
-
-  version: string = packageInfo.version;
 
   constructor(private tmdbApiService: TmdbApiService,
               private titleService: TitleService,

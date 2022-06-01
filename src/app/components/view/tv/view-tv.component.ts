@@ -4,6 +4,7 @@ import {TmdbApiService} from "../../../services/api/tmdb-api.service";
 import {environment} from "../../../../environments/environment";
 import {TvDetails} from "../../../interfaces/details/tv/tv-details";
 import {TitleService} from "../../../services/title/title.service";
+import {catchError, throwError} from "rxjs";
 
 @Component({
   selector: 'app-view-tv',
@@ -39,7 +40,12 @@ export class ViewTvComponent implements OnInit {
       if (params['id'] === undefined) {
         this.router.navigate(['/404']).then();
       } else {
-        this.tmdbApiService.getTv(params['id'].toString().split('-')[0]).subscribe(tv => {
+        this.tmdbApiService.getTv(params['id'].toString().split('-')[0]).pipe(
+          catchError(err => {
+            this.router.navigate(['/404']).then();
+            return throwError(err);
+          })
+        ).subscribe(tv => {
           this.tv = tv;
           this.titleService.setTitle(this.tv?.name);
         });

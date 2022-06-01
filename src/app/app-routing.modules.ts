@@ -4,6 +4,7 @@ import {RouterModule, Routes} from "@angular/router";
 import {ViewMovieComponent} from "./components/view/movie/view-movie.component";
 import {ViewTvComponent} from "./components/view/tv/view-tv.component";
 import {ViewPersonComponent} from "./components/view/person/view-person.component";
+import {NotFoundComponent} from "./components/not-found/not-found.component";
 
 const routes: Routes = [
   {
@@ -21,6 +22,10 @@ const routes: Routes = [
   {
     path: "view/tv/:id",
     component: ViewTvComponent,
+  },
+  {
+    path: "**",
+    component: NotFoundComponent,
   }
 ]
 

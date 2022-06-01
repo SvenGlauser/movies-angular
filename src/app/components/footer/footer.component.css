@@ -1,0 +1,19 @@
+.informations-site {
+  padding: 10px 20px;
+  display: flex;
+  justify-content: space-between;
+  gap: 20px;
+  font-size: 1rem;
+  color: white;
+  height: var(--header-height);
+}
+
+.informations-site a {
+  color: white;
+  text-decoration: none;
+}
+
+.links {
+  display: flex;
+  gap: 20px;
+}
