@@ -34,7 +34,14 @@
         "image-alt": "Image de la série",
         "synopsis": "Synopsis",
         "seasons": "saisons",
-        "episodes": "épisodes"
+        "episodes": "épisodes",
+        "status": {
+          "Ended": "Terminé",
+          "Returning Series": "En cours",
+          "Canceled": "Annulé",
+          "In production": "En production",
+          "Planned": "Planifié"
+        }
       }
     },
     "titles": {

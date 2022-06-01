@@ -34,7 +34,14 @@
         "image-alt": "Bild aus einer Fernsehsendung",
         "synopsis": "Zusammenfassung",
         "seasons": "Saisons",
-        "episodes": "Folgen"
+        "episodes": "Folgen",
+        "status": {
+          "Ended": "Beendet",
+          "Returning Series": "Wiederkehrende Serie",
+          "Canceled": "Abgebrochen",
+          "In production": "In Produktion",
+          "Planned": "Geplant"
+        }
       }
     },
     "titles": {

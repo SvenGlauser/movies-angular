@@ -5,7 +5,10 @@
     <div class="background-content" [style.background-image]="'url(' + getBackgroundImage() + ')'">
       <div class="wrapper-content">
         <div class="content">
-          <img [src]="getImage()" [alt]="'project.view.tv.image-alt' | translate">
+          <div class="img">
+            <div class="tv-label" [ngClass]="tv?.status === 'Ended' || tv?.status === 'Canceled' ? 'termine' : 'en-cours'">{{("project.view.tv.status." + tv?.status) | translate}}</div>
+            <img [src]="getImage()" [alt]="'project.view.tv.image-alt' | translate">
+          </div>
           <div>
             <h1>{{getTitle()}}</h1>
             <ul class="list-genres">
