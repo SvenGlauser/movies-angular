@@ -3,7 +3,7 @@
   display: flex;
   justify-content: space-between;
   gap: 20px;
-  font-size: 1rem;
+  font-size: 0.8rem;
   color: white;
   height: var(--header-height);
 }
@@ -11,9 +11,22 @@
 .informations-site a {
   color: white;
   text-decoration: none;
+  display: flex;
+  align-items: center;
+  gap: 10px;
 }
 
 .links {
   display: flex;
   gap: 20px;
+}
+
+@media screen and (max-width: 400px) {
+  .links {
+    justify-content: space-between;
+    width: 100%;
+  }
+  .version {
+    display: none;
+  }
 }

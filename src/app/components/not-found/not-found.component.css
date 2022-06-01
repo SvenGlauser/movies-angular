@@ -20,9 +20,9 @@ app-header, app-footer {
 }
 
 .titre {
-  font-size: 6rem;
+  font-size: 8rem;
   font-weight: 600;
-  height: 120px;
+  height: 150px;
   line-height: 120px;
   font-family: 'Montserrat', sans-serif;
   background-image: url("https://images.telescope.com/get/ap1509_1292012.jpg");

@@ -149,4 +149,8 @@ export class SearchComponent implements OnInit {
       }
     });
   }
+
+  isSmartphone() {
+    return window.matchMedia("screen and (max-width: 400px)").matches;
+  }
 }
