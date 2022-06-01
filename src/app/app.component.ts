@@ -24,7 +24,7 @@ export class AppComponent {
       return navigator.language;
     } else if (languageArray.filter(lang => lang.startsWith(navigator.language)).length > 0) {
       return languageArray.filter(lang => lang.startsWith(navigator.language))[0];
-    } else if (navigator.languages.filter(lang => languageArray.includes(lang))) {
+    } else if (navigator.languages.filter(lang => languageArray.includes(lang)).length > 0) {
       return navigator.languages.filter(lang => languageArray.includes(lang))[0];
     } else {
       return 'fr-FR';
