@@ -25,7 +25,6 @@ app-header, app-footer {
   height: 150px;
   line-height: 120px;
   font-family: 'Montserrat', sans-serif;
-  background-image: url("https://images.telescope.com/get/ap1509_1292012.jpg");
   background-repeat: repeat;
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
